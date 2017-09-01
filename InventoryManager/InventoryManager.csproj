@@ -152,6 +152,10 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201709010253420_InitialMigration.cs" />
+    <Compile Include="Migrations\201709010253420_InitialMigration.Designer.cs">
+      <DependentUpon>201709010253420_InitialMigration.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\History.cs" />
     <Compile Include="Models\Inventory.cs" />
@@ -215,6 +219,11 @@
   <ItemGroup>
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201709010253420_InitialMigration.resx">
+      <DependentUpon>201709010253420_InitialMigration.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
