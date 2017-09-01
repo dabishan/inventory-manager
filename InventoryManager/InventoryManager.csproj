@@ -158,6 +158,14 @@
     <Compile Include="Migrations\201709010253420_InitialMigration.Designer.cs">
       <DependentUpon>201709010253420_InitialMigration.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201709011628372_UpdateOwnerProperties.cs" />
+    <Compile Include="Migrations\201709011628372_UpdateOwnerProperties.Designer.cs">
+      <DependentUpon>201709011628372_UpdateOwnerProperties.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201709011744443_RenameCreateDateAndModifiedDate.cs" />
+    <Compile Include="Migrations\201709011744443_RenameCreateDateAndModifiedDate.Designer.cs">
+      <DependentUpon>201709011744443_RenameCreateDateAndModifiedDate.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\History.cs" />
     <Compile Include="Models\Inventory.cs" />
@@ -222,6 +230,7 @@
     <Content Include="Views\Hardware\_form_view.cshtml" />
     <Content Include="Views\Hardware\__form_add_hardware.cshtml" />
     <Content Include="Views\Owner\Add.cshtml" />
+    <Content Include="Views\Owner\__form_add_contact.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -242,6 +251,12 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201709010253420_InitialMigration.resx">
       <DependentUpon>201709010253420_InitialMigration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709011628372_UpdateOwnerProperties.resx">
+      <DependentUpon>201709011628372_UpdateOwnerProperties.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709011744443_RenameCreateDateAndModifiedDate.resx">
+      <DependentUpon>201709011744443_RenameCreateDateAndModifiedDate.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
