@@ -1,0 +1,25 @@
+﻿@model InventoryManager.ViewModel.HardwareData
+@{
+    ViewBag.Title = "Add Inventory";
+    ViewBag.Submit = "Save Inventory";
+
+    Layout = "../Shared/_FormLayout.cshtml";
+
+}
+
+@section FormControls {
+    <a href="@Model.ReferrerUrl" class="btn btn-default">Go Back</a>
+    <button type="button" onclick="javascript: document.getElementById('form-add').submit();" class="btn btn-primary">@ViewBag.Submit</button>
+}
+
+<div class="container-fluid">
+    
+    @using (Html.BeginForm("Save", "Hardware", FormMethod.Post, htmlAttributes: new {@id = "form-add"}))
+    {
+        @Html.AntiForgeryToken()
+
+        @Html.Partial("__form_add_hardware")
+    }
+    
+</div>
+

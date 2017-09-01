@@ -1,0 +1,126 @@
+﻿@model InventoryManager.ViewModel.HardwareData
+
+    <div class="row">
+        <div class="col-md-6">
+            <div class="row">
+                @Html.LabelFor(h => h.Hardware.Inventory.Name, htmlAttributes: new { @class = "col-sm-3" })
+                <div class="col-sm-9">
+                    <div class="form-group">
+                        @Model.Hardware.Inventory.Name
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                @Html.LabelFor(h => h.Hardware.Inventory.Description, htmlAttributes: new { @class = "col-sm-3" })
+                <div class="col-sm-9">
+                    <div class="form-group">
+                        @Model.Hardware.Inventory.Description
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="col-md-6">
+            <div class="row">
+                @Html.LabelFor(h => h.Hardware.Inventory.Maker, htmlAttributes: new { @class = "col-sm-3" })
+                <div class="col-sm-9">
+                    <div class="form-group">
+                        <div class="input-group">
+                            @Model.Hardware.Inventory.Maker.Name
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                @Html.LabelFor(h => h.Hardware.Inventory.ModelName, htmlAttributes: new { @class = "col-sm-3" })
+                <div class="col-sm-9">
+                    <div class="form-group">
+                        @Model.Hardware.Inventory.ModelName
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                @Html.LabelFor(h => h.Hardware.Inventory.ModelNo, htmlAttributes: new { @class = "col-sm-3" })
+                <div class="col-sm-9">
+                    <div class="form-group">
+                        @Model.Hardware.Inventory.ModelNo
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                @Html.LabelFor(h => h.Hardware.Inventory.ModelYear, htmlAttributes: new { @class = "col-sm-3" })
+                <div class="col-sm-9">
+                    <div class="form-group">
+                        @Model.Hardware.Inventory.ModelYear
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="separator"></div>
+    <div class="h2">Purchase Information</div>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="row">
+                @Html.LabelFor(h => h.Hardware.Inventory.PurchasePrice, htmlAttributes: new { @class = "col-sm-3" })
+                <div class="col-sm-9">
+                    <div class="form-group">
+                        @Model.Hardware.Inventory.PurchasePrice
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                @Html.LabelFor(h => h.Hardware.Inventory.PurchaseDate, htmlAttributes: new { @class = "col-sm-3" })
+                <div class="col-sm-9">
+                    <div class="form-group">
+                        @Model.Hardware.Inventory.PurchaseDate
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="row">
+                @Html.LabelFor(h => h.Hardware.Inventory.Vendor, htmlAttributes: new {@class = "col-sm-3"})
+                <div class="col-sm-9">
+                    <div class="form-group">
+                        @Model.Hardware.Inventory.Vendor.Name
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="separator"></div>
+    <h2>Hardware Infomation</h2>
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="row">
+                @Html.LabelFor(h => h.HardwareTypes, htmlAttributes: new { @class = "col-sm-3" })
+                <div class="col-sm-9">
+                    <div class="form-group">
+                        @Model.Hardware.HardwareType.Name
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                @Html.LabelFor(h => h.Hardware.Inventory.SerialNo, htmlAttributes: new { @class = "col-sm-3" })
+                <div class="col-sm-9">
+                    <div class="form-group">
+                        @Model.Hardware.Inventory.SerialNo
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="row">
+                @Html.LabelFor(h => h.Hardware.WarrentyExpiration, htmlAttributes: new { @class = "col-sm-3" })
+                <div class="col-sm-9">
+                    <div class="form-group">
+                        @Model.Hardware.WarrentyExpiration</div>
+                </div>
+            </div>
+        </div>
+    </div>
