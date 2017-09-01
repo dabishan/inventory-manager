@@ -1,0 +1,53 @@
+﻿
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - WebApplication</title>
+    <link rel="stylesheet" href="~/Content/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/Content/jquery-ui.min.css" />
+    <link rel="stylesheet" href="~/Content/app.styles.css" />
+</head>
+<body>
+
+@Html.Partial("_header")
+
+<div class="container body-content">
+    @if (TempData["AlertMessage"] != null)
+    {
+        <div class="alert alert-success">
+            @TempData["AlertMessage"];
+        </div>
+    }
+        
+    <div class="page-head">
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="title">@ViewBag.Title</div>
+            </div>
+            <div class="col-sm-6">
+                <div class="controls">
+                    @RenderSection("FormControls", required: false)
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @RenderBody()
+</div>
+<hr />
+
+@Html.Partial("_footer")
+
+<environment names="Development">
+    <script src="~/Scripts/jquery-1.10.2.js"></script>
+    <script src="~/Scripts/bootstrap.js"></script>
+    <script src="~/Scripts/jquery-ui.min.js"></script>
+    <script src="~/Scripts/JavaScript.js"></script>
+</environment>
+
+
+@RenderSection("scripts", required: false)
+</body>
+</html>
