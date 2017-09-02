@@ -150,6 +150,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HardwareController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LocationController.cs" />
     <Compile Include="Controllers\OwnerController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -230,10 +231,16 @@
     <Content Include="Views\Hardware\_form_view.cshtml" />
     <Content Include="Views\Hardware\__form_add_hardware.cshtml" />
     <Content Include="Views\Owner\Add.cshtml" />
-    <Content Include="Views\Owner\__form_add_contact.cshtml" />
+    <Content Include="Views\Owner\__form_add_customer.cshtml" />
+    <Content Include="Views\Owner\__form_locations.cshtml" />
+    <Content Include="Views\Owner\Edit.cshtml" />
+    <Content Include="Views\Location\Add.cshtml" />
+    <Content Include="Views\Location\__form_add_location.cshtml" />
+    <Content Include="Views\Location\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Customer\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
