@@ -21,8 +21,8 @@ namespace InventoryManager.Models
     {
         public int Id { get; set; }
         public OwnerType OwnerType { get; set; }
-        public DateTime CreateDate { get; set; }
-        public DateTime ModifiedDate { get; set; }
+        public DateTime CreatedOn { get; set; }
+        public DateTime ModifiedOn { get; set; }
     }
 
     public class GbhContact

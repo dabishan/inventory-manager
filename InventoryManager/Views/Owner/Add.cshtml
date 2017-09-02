@@ -1,0 +1,24 @@
+﻿@model InventoryManager.ViewModel.CustomerData
+@{
+    ViewBag.Title = "Add Contact";
+    ViewBag.Submit = "Save Contact";
+
+    Layout = "../Shared/_FormLayout.cshtml";
+
+}
+
+@section FormControls {
+    <a href="@Model.ReferrerUrl" class="btn btn-default">Go Back</a>
+    <button type="button" onclick="javascript: document.getElementById('form-add').submit();" class="btn btn-primary">@ViewBag.Submit</button>
+}
+
+<div class="container-fluid">
+
+    @using (Html.BeginForm("Save", "Owner", FormMethod.Post, htmlAttributes: new { @id = "form-add" }))
+    {
+        @Html.AntiForgeryToken()
+
+        @Html.Partial("__form_add_customer")
+    }
+
+</div>
