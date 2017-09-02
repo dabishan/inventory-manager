@@ -53,6 +53,8 @@ namespace InventoryManager.Controllers
             location.City = l.City;
             location.State = l.City;
             location.Zip = l.Zip;
+            location.Phone = l.Phone;
+            location.Fax = l.Fax;
 
             db.SaveChanges();
             TempData["AlertMessage"] = "Location Saved";
