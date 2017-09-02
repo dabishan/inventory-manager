@@ -15,6 +15,7 @@ namespace InventoryManager.Models
         public DbSet<Owner> Owners { get; set; }
         public DbSet<Customer> Customers { get; set; }
         public DbSet<GbhContact> GbhgContacts { get; set; }
+        public DbSet<Location> Locations { get; set; }
 
         public InventoryContext() : base("name=InventoryManagerContext")
         {

@@ -1,0 +1,53 @@
+﻿@model InventoryManager.Models.Location
+
+@*Form Add Location*@
+
+<div class="row">
+    @Html.LabelFor(l => l.Street, htmlAttributes: new {@class = "col-sm-3"})
+    <div class="col-sm-9">
+        <div class="form-group">
+            @Html.TextBoxFor(l => l.Street, htmlAttributes: new {@class = "form-control"})
+            @Html.ValidationMessageFor(l => l.Street, "", new {@class = "text-danger"})
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    @Html.LabelFor(l => l.Unit, htmlAttributes: new { @class = "col-sm-3" })
+    <div class="col-sm-9">
+        <div class="form-group">
+            @Html.TextBoxFor(l => l.Unit, htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessageFor(l => l.Unit, "", new { @class = "text-danger" })
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    @Html.LabelFor(l => l.City, htmlAttributes: new { @class = "col-sm-3" })
+    <div class="col-sm-9">
+        <div class="form-group">
+            @Html.TextBoxFor(l => l.City, htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessageFor(l => l.City, "", new { @class = "text-danger" })
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    @Html.LabelFor(l => l.State, htmlAttributes: new { @class = "col-sm-3" })
+    <div class="col-sm-9">
+        <div class="form-group">
+            @Html.TextBoxFor(l => l.State, htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessageFor(l => l.State, "", new { @class = "text-danger" })
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    @Html.LabelFor(l => l.Zip, htmlAttributes: new { @class = "col-sm-3" })
+    <div class="col-sm-9">
+        <div class="form-group">
+            @Html.TextBoxFor(l => l.Zip, htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessageFor(l => l.Zip, "", new { @class = "text-danger" })
+        </div>
+    </div>
+</div>
