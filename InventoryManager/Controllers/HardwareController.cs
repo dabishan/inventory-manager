@@ -92,7 +92,8 @@ namespace InventoryManager.Controllers
 
             hardware.Inventory.Status = InventoryStatus.Pending;
             db.SaveChanges();
-            TempData["AlertMessage"] = "I am Here";
+
+            TempData["AlertMessage"] = "Your Hardware is Saved.";
             return RedirectToAction("Edit", new { Id = hardware.HardwareId });
         }
 
