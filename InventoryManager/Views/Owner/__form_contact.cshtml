@@ -1,0 +1,39 @@
+﻿@model InventoryManager.ViewModel.CustomerData
+    
+<div class="page-head">
+    <div class="row">
+        <div class="col-sm-6">
+            <h3>Customer Locations</h3>
+        </div>
+        <div class="col-sm-6">
+            <div class="controls">
+                <a class="btn btn-primary" href="@Url.Action("Add", "Contact", new { CustomerId = Model.Customer.Id})">
+                    <span class="glyphicon glyphicon-plus-sign"></span>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="contacts">
+    @foreach (var contact in Model.Customer.Contacts)
+    {
+        <div class="name">
+            @contact.FirstName @contact.LastName
+            <div class="control">
+                <a href="@Url.Action("Edit", "Contact", new {Id = @contact.Id})">
+                    <span class="glyphicon glyphicon-edit"></span>
+                </a>
+                <a href="@Url.Action("Delete", "Contact", new {Id = @contact.Id})">
+                    <span class="glyphicon glyphicon-trash"></span>
+                </a>
+            </div>
+        </div>
+        <div class="info">
+            <span class="glyphicon glyphicon-envelope"></span><a href="mailto:@contact.Email">@contact.Email</a><br/>
+            <span class="glyphicon glyphicon-phone-alt"></span>@contact.Phone
+        </div>
+
+    }
+</div>
+

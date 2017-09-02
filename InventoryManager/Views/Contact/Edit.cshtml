@@ -1,0 +1,29 @@
+﻿@model InventoryManager.Models.Contact
+@{
+    ViewBag.Title = "Add Contact";
+    ViewBag.Submit = "Save Contact";
+
+    Layout = "../Shared/_FormLayout.cshtml";
+
+}
+
+@section FormControls {
+    <a class="btn btn-default">Go Back</a>
+    <button type="button" onclick="javascript: document.getElementById('form-edit').submit();" class="btn btn-primary">@ViewBag.Submit</button>
+}
+
+<div class="container-fluid">
+
+    @using (Html.BeginForm("Save", "Contact", FormMethod.Post, htmlAttributes: new { @id = "form-edit" }))
+    {
+        @Html.AntiForgeryToken()
+        
+        @Html.HiddenFor(l => l.CustomerId)
+
+        @Html.HiddenFor(l => l.Id)
+
+        @Html.Partial("__form_add_contact")
+
+    }
+    
+</div>

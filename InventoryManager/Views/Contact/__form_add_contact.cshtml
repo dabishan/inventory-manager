@@ -1,0 +1,43 @@
+﻿@model InventoryManager.Models.Contact
+
+@*Form Add Location*@
+
+
+<div class="row">
+    @Html.LabelFor(c => c.FirstName, htmlAttributes: new {@class = "col-sm-3"})
+    <div class="col-sm-9">
+        <div class="form-group">
+            @Html.TextBoxFor(l => l.FirstName, htmlAttributes: new {@class = "form-control"})
+            @Html.ValidationMessageFor(l => l.FirstName, "", new {@class = "text-danger"})
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    @Html.LabelFor(c => c.LastName, htmlAttributes: new { @class = "col-sm-3" })
+    <div class="col-sm-9">
+        <div class="form-group">
+            @Html.TextBoxFor(l => l.LastName, htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessageFor(l => l.LastName, "", new { @class = "text-danger" })
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    @Html.LabelFor(c => c.Email, htmlAttributes: new {@class = "col-sm-3"})
+    <div class="col-sm-9">
+        <div class="form-group">
+            @Html.TextBoxFor(l => l.Email, htmlAttributes: new {@class = "form-control"})
+            @Html.ValidationMessageFor(l => l.Email, "", new {@class = "text-danger"})
+        </div>
+    </div>
+</div>
+<div class="row">
+    @Html.LabelFor(c => c.Phone, htmlAttributes: new { @class = "col-sm-3" })
+    <div class="col-sm-9">
+        <div class="form-group">
+            @Html.TextBoxFor(l => l.Phone, htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessageFor(l => l.Phone, "", new { @class = "text-danger" })
+        </div>
+    </div>
+</div>
