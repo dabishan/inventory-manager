@@ -1,6 +1,6 @@
-﻿@model InventoryManager.Models.Contact
+﻿@model InventoryManager.ViewModel.ContactData
 @{
-    ViewBag.Title = "Add Contact";
+    ViewBag.Title = "Edit Contact";
     ViewBag.Submit = "Save Contact";
 
     Layout = "../Shared/_FormLayout.cshtml";
@@ -14,7 +14,7 @@
 
 <div class="container-fluid">
 
-    @using (Html.BeginForm("Save", "Contact", FormMethod.Post, htmlAttributes: new { @id = "form-add" }))
+    @using (Html.BeginForm("Add", "Contact", FormMethod.Post, htmlAttributes: new { @id = "form-add" }))
     {
         @Html.AntiForgeryToken()
         

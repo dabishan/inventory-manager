@@ -1,4 +1,4 @@
-﻿@model InventoryManager.Models.Contact
+﻿@model InventoryManager.ViewModel.ContactData
 @{
     ViewBag.Title = "Add Contact";
     ViewBag.Submit = "Save Contact";
@@ -14,7 +14,7 @@
 
 <div class="container-fluid">
 
-    @using (Html.BeginForm("Save", "Contact", FormMethod.Post, htmlAttributes: new { @id = "form-edit" }))
+    @using (Html.BeginForm("Edit", "Contact", FormMethod.Post, htmlAttributes: new { @id = "form-edit" }))
     {
         @Html.AntiForgeryToken()
         
