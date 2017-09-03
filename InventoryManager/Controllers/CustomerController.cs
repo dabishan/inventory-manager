@@ -8,7 +8,7 @@ using InventoryManager.ViewModel;
 
 namespace InventoryManager.Controllers
 {
-    public class OwnerController : Controller
+    public class CustomerController : Controller
     {
         private InventoryContext db = new InventoryContext();
 
