@@ -1,4 +1,4 @@
-﻿@model InventoryManager.Models.Location
+﻿@model InventoryManager.ViewModel.LocationData
 @{
     ViewBag.Title = "Add Location";
     ViewBag.Submit = "Save Location";
@@ -14,7 +14,7 @@
 
 <div class="container-fluid">
 
-    @using (Html.BeginForm("Save", "Location", FormMethod.Post, htmlAttributes: new { @id = "form-add" }))
+    @using (Html.BeginForm("Add", "Location", FormMethod.Post, htmlAttributes: new { @id = "form-add" }))
     {
         @Html.AntiForgeryToken()
         

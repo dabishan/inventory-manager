@@ -31,6 +31,33 @@ namespace InventoryManager.ViewModel
         public int CustomerId { get; set; }
     }
 
+    public class LocationData : ViewModel
+    {
+        public int? Id { get; set; }
+
+        [Required(ErrorMessage = "Street Can't Be Empty")]
+        public string Street { get; set; }
+
+        public string Unit { get; set; }
+
+        [Required(ErrorMessage = "City Can't Be Empty")]
+        public string City { get; set; }
+
+        [Required(ErrorMessage = "State Can't Be Empty")]
+        public string State { get; set; }
+
+        [Display(Name = "Zipcode")]
+        [Required(ErrorMessage = "Zipcode Can't Be Empty")]
+        public string Zip { get; set; }
+
+        public string Phone { get; set; }
+
+        public string Fax { get; set; }
+
+        public int CustomerId { get; set; }
+
+    }
+
     public class OwnerList : ViewModel
     {
         public IList<Owner> Owners { get; set; }
