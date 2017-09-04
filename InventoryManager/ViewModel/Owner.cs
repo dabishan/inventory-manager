@@ -7,7 +7,19 @@ namespace InventoryManager.ViewModel
     public class CustomerData : ViewModel
     {
         public OwnerType OwnerType { get; set; }
-        public Customer Customer { get; set; }
+
+        public int Id { get; set; } 
+
+        [Required(ErrorMessage = "Name Can't be Empty")]
+        public string Name { get; set; }
+
+        public string Description { get; set; }
+
+        public ICollection<Location> Locations { get; set; }
+        public ICollection<Contact> Contacts { get; set; }
+
+        public int OwnerId { get; set; }
+        public Owner Owner { get; set; }
     }
 
     public class ContactData : ViewModel

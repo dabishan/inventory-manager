@@ -14,11 +14,10 @@
 
 <div class="container-fluid">
 
-    @using (Html.BeginForm("Save", "Owner", FormMethod.Post, htmlAttributes: new { @id = "form-edit" }))
+    @using (Html.BeginForm("Edit", "Customer", FormMethod.Post, htmlAttributes: new { @id = "form-edit" }))
     {
         @Html.AntiForgeryToken()
-        @Html.HiddenFor(c => c.Customer.Id)
-        @Html.HiddenFor(c => c.Customer.Owner.Id)
+        @Html.HiddenFor(c => c.Id)
 
         @Html.Partial("__form_add_customer")
     }

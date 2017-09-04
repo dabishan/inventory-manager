@@ -21,13 +21,44 @@ namespace InventoryManager.Controllers
         public ActionResult Add()
         {
             var viewModel = new CustomerData();
-
-            viewModel.Customer = new Customer()
-            {
-                Owner = new Owner()
-            };
-
+            
             return View(viewModel);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Add(CustomerData c)
+        {
+            if (!ModelState.IsValid) return View(c);
+
+            var customer = new Customer();
+            var owner = new Owner();
+
+            customer.Owner = owner;
+            customer.Owner.OwnerType = OwnerType.Customer;
+
+            MapCustomer(customer, c);
+            customer.Owner.CreatedOn = DateTime.Now.Date;
+
+            db.Customers.Add(customer);
+            db.SaveChanges();
+
+            TempData["AlertMessage"] = "Customer Saved";
+            return RedirectToAction("Edit", "Customer", new { customer.Id });
+        }
+
+        private void MapCustomer(Customer customerToUpdate, CustomerData data)
+        {
+            customerToUpdate.Name = data.Name;
+            customerToUpdate.Description = data.Description;
+            customerToUpdate.Owner.ModifiedOn = DateTime.Now.Date;
+        }
+
+        private void PopulateCustomer(Customer customer, CustomerData customerToDisplay)
+        {
+            customerToDisplay.Name = customer.Name;
+            customerToDisplay.Description = customer.Description;
+            customerToDisplay.Id = customer.Id;
         }
 
         public ActionResult Edit(int? Id)
@@ -39,52 +70,43 @@ namespace InventoryManager.Controllers
                 .Include(c => c.Locations)
                 .Include(c => c.Contacts)
                 .SingleOrDefault(c => c.Id == Id);
-
             if (customer == null) return new HttpNotFoundResult();
 
             var viewModel = new CustomerData();
-            viewModel.Customer = customer;
+            PopulateCustomer(customer, viewModel);
+
+            viewModel.Locations = customer.Locations;
+            viewModel.Contacts = customer.Contacts;
 
             return View(viewModel);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Save(CustomerData c)
+        public ActionResult Edit(CustomerData c)
         {
-            Customer customer;
-            if (ModelState.IsValid == false) return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            
-            if (c.Customer.Id == 0)
+            if (c.Id == 0) return new HttpNotFoundResult();
+
+            var customer = db.Customers
+                .Include(i => i.Owner)
+                .Include(i => i.Locations)
+                .Include(i => i.Contacts)
+                .SingleOrDefault(i => i.Id == c.Id);
+            if (customer == null) return new HttpNotFoundResult();
+
+            if (!ModelState.IsValid)
             {
-                customer = c.Customer;
-                customer.Owner = new Owner()
-                {
-                    CreatedOn = DateTime.Now.Date,
-                    OwnerType = OwnerType.Customer
-                };
-
-                db.Customers.Add(customer);
-            }
-            else
-            {
-                customer = db.Customers
-                    .Include(i => i.Owner)
-                    .SingleOrDefault(i => i.Id == c.Customer.Id);
-                if(customer == null) return new HttpNotFoundResult();
-
-                customer.Name = c.Customer.Name;
-                customer.Description = c.Customer.Description;
-                customer.Owner.ModifiedOn = DateTime.Now.Date;
-
+                c.Locations = customer.Locations;
+                c.Contacts = customer.Contacts;
+                return View(c);
             }
 
-            customer.Owner.ModifiedOn = DateTime.Now.Date;
-            
+            MapCustomer(customer, c);
+
             db.SaveChanges();
-            TempData["Alert"] = "New Contact Added.";
 
-            return RedirectToAction("Edit", new {customer.Id});
+            TempData["AlertMessage"] = "Customer Saved";
+            return RedirectToAction("Edit", "Customer", new { customer.Id });
         }
 
         protected override void Dispose(bool disposing)
