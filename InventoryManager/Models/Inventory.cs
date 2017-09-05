@@ -21,30 +21,22 @@ namespace InventoryManager.Models
     {
         public int Id { get; set; }
 
-        [Display(Name = "Product Name")]
         public string Name { get; set; }
 
         public string Description { get; set; }
 
-        [Display(Name = "Model Name")]
         public string ModelName { get; set; }
 
-        [Display(Name = "Model Year")]
         public int? ModelYear { get; set; }
 
-        [Display(Name = "Model No")]
         public string ModelNo { get; set; }
 
-        [Display(Name = "Serial No")]
         public string SerialNo { get; set; }
 
-        [Display(Name = "Inventory Type")]
         public InventoryType InventoryType { get; set; }
 
-        [Display(Name = "Purchase Price")]
         public double PurchasePrice { get; set; }
 
-        [Display(Name = "Purchase Date")]
         public DateTime? PurchaseDate { get; set; }
 
         public Maker Maker { get; set; }
@@ -53,17 +45,13 @@ namespace InventoryManager.Models
         public Vendor Vendor { get; set; }
         public int VendorId { get; set; }
 
-        [Display(Name = "Current Owner")]
         public Owner Owner { get; set; }
         public int OwnerId { get; set; }
 
-        [Display(Name = "Inventory Status")]
         public InventoryStatus Status { get; set; }
 
-        [Display(Name = "Created On")]
         public DateTime CreatedOn { get; set; }
 
-        [Display(Name = "Modified On")]
         public DateTime ModifiedOn { get; set; }
     }
 
@@ -102,15 +90,11 @@ namespace InventoryManager.Models
 
     public class Hardware
     {
+        public int Id { get; set; }
 
-        [Display(Name = "Hardware Id")]
-        public int HardwareId { get; set; }
-
-        [Display(Name = "Hardware Type")]
         public HardwareType HardwareType { get; set; }
         public int HardwareTypeId { get; set; }
 
-        [Display(Name = "Warrenty Expiration")]
         public DateTime? WarrentyExpiration { get; set; }
 
         public Inventory Inventory { get; set; }
@@ -145,16 +129,12 @@ namespace InventoryManager.Models
 
     public class Software
     {
-        [Display(Name = "Software Id")]
-        public int SoftwareId { get; set; }
+        public int Id { get; set; }
 
-        [Display(Name = "Software Type")]
         public SoftwareType SoftwareType { get; set; }
 
-        [Display(Name = "Subscription")]
         public bool IsSubscription { get; set; }
 
-        [Display(Name = "Expiration Date")]
         public DateTime? ExpirationDate { get; set; }
 
         public Inventory Inventory { get; set; }

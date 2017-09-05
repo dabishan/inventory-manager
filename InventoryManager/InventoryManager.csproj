@@ -149,10 +149,11 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\ContactController.cs" />
+    <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\HardwareController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LocationController.cs" />
-    <Compile Include="Controllers\OwnerController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -168,6 +169,10 @@
     <Compile Include="Migrations\201709011744443_RenameCreateDateAndModifiedDate.Designer.cs">
       <DependentUpon>201709011744443_RenameCreateDateAndModifiedDate.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201709040428190_RenameSoftwareIDAndHardwareId.cs" />
+    <Compile Include="Migrations\201709040428190_RenameSoftwareIDAndHardwareId.Designer.cs">
+      <DependentUpon>201709040428190_RenameSoftwareIDAndHardwareId.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\History.cs" />
     <Compile Include="Models\Inventory.cs" />
@@ -177,6 +182,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModel\Inventory.cs" />
     <Compile Include="ViewModel\Owner.cs" />
+    <Compile Include="ViewModel\User.cs" />
     <Compile Include="ViewModel\ViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -231,21 +237,22 @@
     <Content Include="Views\Hardware\Show.cshtml" />
     <Content Include="Views\Hardware\_form_view.cshtml" />
     <Content Include="Views\Hardware\__form_add_hardware.cshtml" />
-    <Content Include="Views\Owner\Add.cshtml" />
-    <Content Include="Views\Owner\__form_add_customer.cshtml" />
-    <Content Include="Views\Owner\__form_locations.cshtml" />
-    <Content Include="Views\Owner\Edit.cshtml" />
     <Content Include="Views\Location\Add.cshtml" />
     <Content Include="Views\Location\__form_add_location.cshtml" />
     <Content Include="Views\Location\Edit.cshtml" />
     <Content Include="Views\Contact\__form_add_contact.cshtml" />
     <Content Include="Views\Contact\Add.cshtml" />
     <Content Include="Views\Contact\Edit.cshtml" />
-    <Content Include="Views\Owner\__form_contact.cshtml" />
+    <Content Include="Views\User\Login.cshtml" />
+    <Content Include="Views\_ViewLogin.cshtml" />
+    <Content Include="Views\Customer\Add.cshtml" />
+    <Content Include="Views\Customer\Edit.cshtml" />
+    <Content Include="Views\Customer\__form_add_customer.cshtml" />
+    <Content Include="Views\Customer\__form_contact.cshtml" />
+    <Content Include="Views\Customer\__form_locations.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Customer\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -269,6 +276,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201709011744443_RenameCreateDateAndModifiedDate.resx">
       <DependentUpon>201709011744443_RenameCreateDateAndModifiedDate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709040428190_RenameSoftwareIDAndHardwareId.resx">
+      <DependentUpon>201709040428190_RenameSoftwareIDAndHardwareId.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
