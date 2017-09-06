@@ -1,0 +1,26 @@
+.page-head {
+  margin-top: 25px;
+  margin-bottom: 10px;
+  padding-bottom: 10px;
+  border-bottom: solid 1px #505050;
+  
+  .title {
+    font-size:28px;
+  }
+  
+  .controls {
+    text-align: right;
+    .buttons {
+      padding-right:20px;
+    }
+  }
+}
+
+.form{
+  padding: 25px 0;
+  
+  .separator {
+    margin-bottom:15px;
+    border-bottom: solid 1px #F3F3F3;
+  }
+}
