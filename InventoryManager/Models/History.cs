@@ -11,7 +11,7 @@ namespace InventoryManager.Models
         public Owner AssignedTo { get; set; }
         public InventoryStatus StatusAssigned { get; set; }
 
-        public DateTime CreateDate { get; set; }
-        public DateTime ModifiedDate { get; set; }
+        public DateTime CreatedOn { get; set; }
+        public DateTime ModifiedOn { get; set; }
     }
 }
