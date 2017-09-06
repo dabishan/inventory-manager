@@ -7,15 +7,7 @@ namespace InventoryManager.Models
 {
     public enum InventoryStatus { Pending, UnAssigned, Active, InActive, Decommissioned }
 
-    public enum InventoryType
-    {
-        [Display(Name = "Hardware")]
-        Hardware,
-
-        [Display(Name="Software")]
-        Software
-    }
-
+    public enum InventoryType {Hardware, Software} 
 
     public class Inventory
     {

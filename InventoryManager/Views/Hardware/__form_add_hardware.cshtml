@@ -6,20 +6,20 @@
     <div class="row">
         <div class="col-md-6">
             <div class="row">
-                @Html.LabelFor(h => h.Hardware.Inventory.Name, htmlAttributes: new {@class = "col-sm-3"})
+                @Html.LabelFor(h => h.Name, htmlAttributes: new {@class = "col-sm-3"})
                 <div class="col-sm-9">
                     <div class="form-group">
-                        @Html.TextBoxFor(h => h.Hardware.Inventory.Name, htmlAttributes: new {@class = "form-control"})
-                        @Html.ValidationMessageFor(h => h.Hardware.Inventory.Name, "", new {@class = "text-danger"})
+                        @Html.TextBoxFor(h => h.Name, htmlAttributes: new {@class = "form-control"})
+                        @Html.ValidationMessageFor(h => h.Name, "", new {@class = "text-danger"})
                     </div>
                 </div>
             </div>
             <div class="row">
-                @Html.LabelFor(h => h.Hardware.Inventory.Description, htmlAttributes: new {@class = "col-sm-3"})
+                @Html.LabelFor(h => h.Description, htmlAttributes: new {@class = "col-sm-3"})
                 <div class="col-sm-9">
                     <div class="form-group">
-                        @Html.TextAreaFor(h => h.Hardware.Inventory.Description, htmlAttributes: new {@class = "form-control", @rows = "6"})
-                        @Html.ValidationMessageFor(h => h.Hardware.Inventory.Description, "", new {@class = "text-danger"})
+                        @Html.TextAreaFor(h => h.Description, htmlAttributes: new {@class = "form-control", @rows = "6"})
+                        @Html.ValidationMessageFor(h => h.Description, "", new {@class = "text-danger"})
                     </div>
                 </div>
             </div>
@@ -27,48 +27,48 @@
         </div>
         <div class="col-md-6">
             <div class="row">
-                @Html.LabelFor(h => h.Hardware.Inventory.Maker, htmlAttributes: new {@class = "col-sm-3"})
+                @Html.LabelFor(h => h.MakerId, htmlAttributes: new {@class = "col-sm-3"})
                 <div class="col-sm-9">
                     <div class="form-group">
                         <div class="input-group">
-                            @Html.DropDownListFor(h => h.Hardware.Inventory.MakerId,
-                                new SelectList(Model.Makers, "Id", "Name", Model.Hardware.Inventory.MakerId),
+                            @Html.DropDownListFor(h => h.MakerId,
+                                new SelectList(Model.Makers, "Id", "Name", Model.MakerId),
                                 htmlAttributes: new {@class = "form-control"})
                             <div class="input-group-btn">
                                 <button type="button" name="add-new" class="btn btn-default"><span class="glyphicon glyphicon-pencil"></span> New</button>
                             </div>
                         </div>
-                        @Html.ValidationMessageFor(h => h.Hardware.Inventory.Maker, "", new {@class = "text-danger"})
+                        @Html.ValidationMessageFor(h => h.MakerId, "", new {@class = "text-danger"})
                     </div>
                 </div>
             </div>
 
             <div class="row">
-                @Html.LabelFor(h => h.Hardware.Inventory.ModelName, htmlAttributes: new {@class = "col-sm-3"})
+                @Html.LabelFor(h => h.ModelName, htmlAttributes: new {@class = "col-sm-3"})
                 <div class="col-sm-9">
                     <div class="form-group">
-                        @Html.TextBoxFor(h => h.Hardware.Inventory.ModelName, htmlAttributes: new {@class = "form-control"})
-                        @Html.ValidationMessageFor(h => h.Hardware.Inventory.ModelName, "", new {@class = "text-danger"})
+                        @Html.TextBoxFor(h => h.ModelName, htmlAttributes: new {@class = "form-control"})
+                        @Html.ValidationMessageFor(h => h.ModelName, "", new {@class = "text-danger"})
                     </div>
                 </div>
             </div>
 
             <div class="row">
-                @Html.LabelFor(h => h.Hardware.Inventory.ModelNo, htmlAttributes: new {@class = "col-sm-3"})
+                @Html.LabelFor(h => h.ModelNo, htmlAttributes: new {@class = "col-sm-3"})
                 <div class="col-sm-9">
                     <div class="form-group">
-                        @Html.TextBoxFor(h => h.Hardware.Inventory.ModelNo, htmlAttributes: new {@class = "form-control"})
-                        @Html.ValidationMessageFor(h => h.Hardware.Inventory.ModelNo, "", new {@class = "text-danger"})
+                        @Html.TextBoxFor(h => h.ModelNo, htmlAttributes: new {@class = "form-control"})
+                        @Html.ValidationMessageFor(h => h.ModelNo, "", new {@class = "text-danger"})
                     </div>
                 </div>
             </div>
 
             <div class="row">
-                @Html.LabelFor(h => h.Hardware.Inventory.ModelYear, htmlAttributes: new {@class = "col-sm-3"})
+                @Html.LabelFor(h => h.ModelYear, htmlAttributes: new {@class = "col-sm-3"})
                 <div class="col-sm-9">
                     <div class="form-group">
-                        @Html.TextBoxFor(h => h.Hardware.Inventory.ModelYear, htmlAttributes: new {@class = "form-control"})
-                        @Html.ValidationMessageFor(h => h.Hardware.Inventory.Name, "", new {@class = "text-danger"})
+                        @Html.TextBoxFor(h => h.ModelYear, htmlAttributes: new {@class = "form-control"})
+                        @Html.ValidationMessageFor(h => h.ModelYear, "", new {@class = "text-danger"})
                     </div>
                 </div>
             </div>
@@ -79,35 +79,35 @@
     <div class="row">
         <div class="col-md-6">
             <div class="row">
-                @Html.LabelFor(h => h.Hardware.Inventory.PurchasePrice, htmlAttributes: new {@class = "col-sm-3"})
+                @Html.LabelFor(h => h.PurchasePrice, htmlAttributes: new {@class = "col-sm-3"})
                 <div class="col-sm-9">
                     <div class="form-group">
-                        @Html.TextBoxFor(h => h.Hardware.Inventory.PurchasePrice, htmlAttributes: new {@class = "form-control"})
-                        @Html.ValidationMessageFor(h => h.Hardware.Inventory.PurchasePrice, "", new {@class = "text-danger"})
+                        @Html.TextBoxFor(h => h.PurchasePrice, htmlAttributes: new {@class = "form-control"})
+                        @Html.ValidationMessageFor(h => h.PurchasePrice, "", new {@class = "text-danger"})
                     </div>
                 </div>
             </div>
 
             <div class="row">
-                @Html.LabelFor(h => h.Hardware.Inventory.PurchaseDate, htmlAttributes: new {@class = "col-sm-3"})
+                @Html.LabelFor(h => h.PurchaseDate, htmlAttributes: new {@class = "col-sm-3"})
                 <div class="col-sm-9">
                     <div class="form-group">
-                        @Html.TextBoxFor(h => h.Hardware.Inventory.PurchaseDate, htmlAttributes: new {@class = "form-control datetime"})
-                        @Html.ValidationMessageFor(h => h.Hardware.Inventory.PurchaseDate, "", new {@class = "text-danger"})
+                        @Html.TextBoxFor(h => h.PurchaseDate, htmlAttributes: new {@class = "form-control datetime"})
+                        @Html.ValidationMessageFor(h => h.PurchaseDate, "", new {@class = "text-danger"})
                     </div>
                 </div>
             </div>
         </div>
         <div class="col-md-6">
             <div class="row">
-                @Html.LabelFor(h => h.Hardware.Inventory.Vendor, htmlAttributes: new {@class = "col-sm-3"})
+                @Html.LabelFor(h => h.VendorId, htmlAttributes: new {@class = "col-sm-3"})
                 <div class="col-sm-9">
                     <div class="form-group">
-                        @Html.DropDownListFor(h => h.Hardware.Inventory.VendorId,
-                            new SelectList(Model.Vendors, "Id", "Name", Model.Hardware.Inventory.VendorId),
+                        @Html.DropDownListFor(h => h.VendorId,
+                            new SelectList(Model.Vendors, "Id", "Name", Model.VendorId),
                             htmlAttributes: new {@class = "form-control"})
 
-                        @Html.ValidationMessageFor(h => h.Hardware.Inventory.Vendor, "", new {@class = "text-danger"})
+                        @Html.ValidationMessageFor(h => h.VendorId, "", new {@class = "text-danger"})
                     </div>
                 </div>
             </div>
@@ -118,34 +118,34 @@
     <div class="row">
         <div class="col-sm-6">
             <div class="row">
-                @Html.LabelFor(h => h.HardwareTypes, htmlAttributes: new {@class = "col-sm-3"})
+                @Html.LabelFor(h => h.HardwareTypeId, htmlAttributes: new {@class = "col-sm-3"})
                 <div class="col-sm-9">
                     <div class="form-group">
-                        @Html.DropDownListFor(h => h.Hardware.HardwareTypeId,
-                            new SelectList(Model.HardwareTypes, "Id", "Name", Model.Hardware.HardwareTypeId),
+                        @Html.DropDownListFor(h => h.HardwareTypeId,
+                            new SelectList(Model.HardwareTypes, "Id", "Name", Model.HardwareTypeId),
                             htmlAttributes: new {@class = "form-control"})
 
-                        @Html.ValidationMessageFor(h => h.Hardware.HardwareType, "", new {@class = "text-danger"})
+                        @Html.ValidationMessageFor(h => h.HardwareTypeId, "", new {@class = "text-danger"})
                     </div>
                 </div>
             </div>
             <div class="row">
-                @Html.LabelFor(h => h.Hardware.Inventory.SerialNo, htmlAttributes: new {@class = "col-sm-3"})
+                @Html.LabelFor(h => h.SerialNo, htmlAttributes: new {@class = "col-sm-3"})
                 <div class="col-sm-9">
                     <div class="form-group">
-                        @Html.TextBoxFor(h => h.Hardware.Inventory.SerialNo, htmlAttributes: new {@class = "form-control"})
-                        @Html.ValidationMessageFor(h => h.Hardware.Inventory.SerialNo, "", new {@class = "text-danger"})
+                        @Html.TextBoxFor(h => h.SerialNo, htmlAttributes: new {@class = "form-control"})
+                        @Html.ValidationMessageFor(h => h.SerialNo, "", new {@class = "text-danger"})
                     </div>
                 </div>
             </div>
         </div>
         <div class="col-sm-6">
             <div class="row">
-                @Html.LabelFor(h => h.Hardware.WarrentyExpiration, htmlAttributes: new {@class = "col-sm-3"})
+                @Html.LabelFor(h => h.WarrentyExpiration, htmlAttributes: new {@class = "col-sm-3"})
                 <div class="col-sm-9">
                     <div class="form-group">
-                        @Html.TextBoxFor(h => h.Hardware.WarrentyExpiration, htmlAttributes: new {@class = "form-control"})
-                        @Html.ValidationMessageFor(h => h.Hardware.WarrentyExpiration, "", new {@class = "text-danger"})
+                        @Html.TextBoxFor(h => h.WarrentyExpiration, htmlAttributes: new {@class = "form-control"})
+                        @Html.ValidationMessageFor(h => h.WarrentyExpiration, "", new {@class = "text-danger"})
                     </div>
                 </div>
             </div>

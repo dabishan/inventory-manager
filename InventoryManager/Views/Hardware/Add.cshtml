@@ -14,7 +14,7 @@
 
 <div class="container-fluid">
     
-    @using (Html.BeginForm("Save", "Hardware", FormMethod.Post, htmlAttributes: new {@id = "form-add"}))
+    @using (Html.BeginForm("Add", "Hardware", FormMethod.Post, htmlAttributes: new {@id = "form-add"}))
     {
         @Html.AntiForgeryToken()
 

@@ -14,11 +14,10 @@
     
 <div class="container-fluid">
     
-    @using (Html.BeginForm("Save", "Hardware", FormMethod.Post, htmlAttributes: new {@id = "form-edit"}))
+    @using (Html.BeginForm("Edit", "Hardware", FormMethod.Post, htmlAttributes: new {@id = "form-edit"}))
     {
         @Html.AntiForgeryToken()
-        @Html.HiddenFor(h => h.Hardware.HardwareId)
-        @Html.HiddenFor(h => h.Hardware.Inventory.Id)
+        @Html.HiddenFor(h => h.Id)
 
         @Html.Partial("__form_add_hardware")
     }

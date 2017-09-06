@@ -27,11 +27,11 @@
                 <td>@hardware.Inventory.PurchaseDate</td>
                 <td class="text-center">@hardware.Inventory.Status</td>
                 <td class="text-right">
-                    <a href="@Url.Action("Show", "Hardware", new {Id = hardware.HardwareId})">
+                    <a href="@Url.Action("Show", "Hardware", new {Id = hardware.Id})">
                         <span class="glyphicon glyphicon-eye-open"></span> View
                     </a>
                     &nbsp;
-                    <a href="@Url.Action("Edit", "Hardware", new {Id = hardware.HardwareId})">
+                    <a href="@Url.Action("Edit", "Hardware", new {Id = hardware.Id})">
                         <span class="glyphicon glyphicon-pencil"></span> Edit
                     </a>
                 </td>
