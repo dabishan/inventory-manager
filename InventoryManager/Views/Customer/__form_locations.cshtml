@@ -13,38 +13,48 @@
 </div>
 
 <div class="row">
-    @foreach (var location in Model.Locations)
+    @if (Model.Locations.Count > 0)
     {
-        <div class="col-sm-3">
-            <div>
-                @location.Street<br/>
-                @if (location.Unit != null)
+        foreach (var location in Model.Locations)
+        {
+            <div class="col-sm-3">
+                <div>
+                    @location.Street<br/>
+                    @if (location.Unit != null)
+                    {
+                        @location.Unit<br/>
+                    }
+                    @location.City, @location.State @location.Zip
+                </div>
+                @if (location.Phone != null)
                 {
-                    @location.Unit<br/>
+                    <div class="phone">
+                        <span class="fa fa-phone"></span> @location.Phone
+                    </div>
                 }
-                @location.City, @location.State @location.Zip
-            </div>
-            @if (location.Phone != null)
-            {
-                <div class="phone">
-                    <span class="fa fa-phone"></span> @location.Phone
-                </div>
-            }
-            @if (location.Fax != null)
-            {
-                <div class="fax">
-                    <span class="fa fa-fax"></span> @location.Fax
-                </div>
-            }
+                @if (location.Fax != null)
+                {
+                    <div class="fax">
+                        <span class="fa fa-fax"></span> @location.Fax
+                    </div>
+                }
 
-            <div class="controls">
-                <a href="@Url.Action("Edit", "Location", new {Id = location.Id})" class="mini-btn">
-                    <span class="fa fa-pencil"></span>
-                </a>
-                <a href="@Url.Action("Delete", "Location", new {Id = location.Id})" class="mini-btn">
-                    <span class="fa fa-trash"></span>
-                </a>
+                <div class="controls">
+                    <a href="@Url.Action("Edit", "Location", new {Id = location.Id})" class="mini-btn">
+                        <span class="fa fa-pencil"></span>
+                    </a>
+                    <a href="@Url.Action("Delete", "Location", new {Id = location.Id})" class="mini-btn">
+                        <span class="fa fa-trash"></span>
+                    </a>
+                </div>
             </div>
+        }
+    }
+    else
+    {
+        <div class="text-center">
+            No Locations for this Customer
         </div>
     }
+
 </div>

@@ -37,7 +37,7 @@ namespace InventoryManager.Controllers
             db.SaveChanges();
 
             TempData["AlertMessage"] = "Contact Saved";
-            return RedirectToAction("Edit", "Customer", new { Id = c.CustomerId });
+            return RedirectToAction("Show", "Customer", new { Id = c.CustomerId });
         }
 
         public ActionResult Edit(int? Id)
@@ -68,7 +68,7 @@ namespace InventoryManager.Controllers
             db.SaveChanges();
 
             TempData["AlertMessage"] = "Contact Saved";
-            return RedirectToAction("Edit", "Customer", new { Id = c.CustomerId });
+            return RedirectToAction("Show", "Customer", new { Id = c.CustomerId });
         }
 
         public void MapContact(Contact contactToUpdate, ContactData data)

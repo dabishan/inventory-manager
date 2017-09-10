@@ -1,0 +1,35 @@
+﻿@model InventoryManager.ViewModel.CustomerData
+@{
+    ViewBag.Title = Model.Name;
+
+    Layout = "../Shared/_FormLayout.cshtml";
+}
+
+
+@section PageHead{
+    <h2>@ViewBag.Title</h2>
+}
+
+@section MenuControls {
+    <ul>
+        <li>
+            <a href="@Url.Action("Delete", "Customer", new {Id = Model.Id})">
+                <i class="fa fa-trash"></i> Delete
+            </a>
+        </li>
+        <li>
+            <a href="@Url.Action("Edit", "Customer", new {Id = Model.Id})">
+                <i class="fa fa-pencil"></i> Edit
+            </a>
+        </li>
+    </ul>
+}
+
+@{Html.RenderPartial("_form_view");}
+
+@{Html.RenderPartial("__form_locations"); }
+    
+@{Html.RenderPartial("__form_contact");}
+
+
+

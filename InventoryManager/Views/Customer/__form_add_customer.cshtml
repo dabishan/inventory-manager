@@ -2,8 +2,8 @@
 
 @*Form Add Contact*@
 <div class="row">
-    @Html.LabelFor(c => c.Name, htmlAttributes: new {@class = "col-sm-3"})
-    <div class="col-sm-9">
+    @Html.LabelFor(c => c.Name, htmlAttributes: new {@class = "col-sm-2"})
+    <div class="col-sm-10">
         <div class="form-group">
             @Html.TextBoxFor(c => c.Name, htmlAttributes: new {@class = "form-control"})
             @Html.ValidationMessageFor(c => c.Name, "", new {@class = "text-danger"})
@@ -12,8 +12,8 @@
 </div>
 
 <div class="row">
-    @Html.LabelFor(c => c.Description, htmlAttributes: new {@class = "col-sm-3"})
-    <div class="col-sm-9">
+    @Html.LabelFor(c => c.Description, htmlAttributes: new {@class = "col-sm-2"})
+    <div class="col-sm-10">
         <div class="form-group">
             @Html.TextAreaFor(c => c.Description, htmlAttributes: new {@class = "form-control"})
             @Html.ValidationMessageFor(c => c.Description, "", new {@class = "text-danger", @rows = "6"})

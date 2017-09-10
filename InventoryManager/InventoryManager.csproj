@@ -250,6 +250,8 @@
     <Content Include="Views\Customer\__form_add_customer.cshtml" />
     <Content Include="Views\Customer\__form_contact.cshtml" />
     <Content Include="Views\Customer\__form_locations.cshtml" />
+    <Content Include="Views\Customer\Show.cshtml" />
+    <Content Include="Views\Customer\_form_view.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -44,7 +44,7 @@ namespace InventoryManager.Controllers
             db.SaveChanges();
 
             TempData["AlertMessage"] = "Customer Saved";
-            return RedirectToAction("Edit", "Customer", new { customer.Id });
+            return RedirectToAction("Show", "Customer", new { customer.Id });
         }
 
         private void MapCustomer(Customer customerToUpdate, CustomerData data)
@@ -67,16 +67,12 @@ namespace InventoryManager.Controllers
 
             var customer = db.Customers
                 .Include(c => c.Owner)
-                .Include(c => c.Locations)
-                .Include(c => c.Contacts)
                 .SingleOrDefault(c => c.Id == Id);
+
             if (customer == null) return new HttpNotFoundResult();
 
             var viewModel = new CustomerData();
             PopulateCustomer(customer, viewModel);
-
-            viewModel.Locations = customer.Locations;
-            viewModel.Contacts = customer.Contacts;
 
             return View(viewModel);
         }
@@ -89,24 +85,38 @@ namespace InventoryManager.Controllers
 
             var customer = db.Customers
                 .Include(i => i.Owner)
-                .Include(i => i.Locations)
-                .Include(i => i.Contacts)
                 .SingleOrDefault(i => i.Id == c.Id);
-            if (customer == null) return new HttpNotFoundResult();
 
-            if (!ModelState.IsValid)
-            {
-                c.Locations = customer.Locations;
-                c.Contacts = customer.Contacts;
-                return View(c);
-            }
+            if (customer == null) return new HttpNotFoundResult();
 
             MapCustomer(customer, c);
 
             db.SaveChanges();
 
             TempData["AlertMessage"] = "Customer Saved";
-            return RedirectToAction("Edit", "Customer", new { customer.Id });
+            return RedirectToAction("Show", "Customer", new { customer.Id });
+        }
+
+        public ActionResult Show(int? Id)
+        {
+            if (Id == null) return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+
+            var viewModel = new CustomerData();
+
+            var customer = db.Customers
+                .Include(c => c.Owner)
+                .Include(c => c.Locations)
+                .Include(c => c.Contacts)
+                .SingleOrDefault(c => c.Id == Id);
+
+            if (customer == null) return new HttpNotFoundResult();
+
+            PopulateCustomer(customer, viewModel);
+
+            viewModel.Locations = customer.Locations;
+            viewModel.Contacts = customer.Contacts;
+
+            return View(viewModel);
         }
 
         protected override void Dispose(bool disposing)

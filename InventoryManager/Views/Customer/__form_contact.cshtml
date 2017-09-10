@@ -14,38 +14,46 @@
 </div>
 
 <div class="list">
-    <table class="table table-striped table-hover">
-        <thead class="">
-        <tr>
-            <th>Customer name</th>
-            <th>Phone</th>
-            <th>Email</th>
-            <th class="text-right">Action</th>
-        </tr>
-        </thead>
-        <tbody>
-        @foreach (var contact in Model.Contacts)
-        {
+    @if (Model.Contacts.Count > 0) { 
+        <table class="table table-striped table-hover">
+            <thead class="">
             <tr>
-                <td>
-                    <a href="#">
-                        <i class="fa fa-user"></i> @contact.FirstName @contact.LastName
-                    </a>
-                </td>
-                <td>
-                    @contact.Phone
-                </td>
-                <td>@contact.Email</td>
-                <td class="text-right">
-                    <a href="@Url.Action("Edit", "Contact", new {Id = @contact.Id})" class="mini-btn">
-                        <i class="fa fa-pencil"></i>
-                    </a>
-                    <a href="@Url.Action("Delete", "Contact", new {Id = @contact.Id})" class="mini-btn">
-                        <i class="fa fa-trash"></i>
-                    </a>
-                </td>
+                <th>Customer name</th>
+                <th>Phone</th>
+                <th>Email</th>
+                <th class="text-right">Action</th>
             </tr>
-        }
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+            @foreach (var contact in Model.Contacts)
+            {
+                <tr>
+                    <td>
+                        <a href="#">
+                            <i class="fa fa-user"></i> @contact.FirstName @contact.LastName
+                        </a>
+                    </td>
+                    <td>
+                        @contact.Phone
+                    </td>
+                    <td><a href="mailto:@contact.Email">@contact.Email</a></td>
+                    <td class="text-right">
+                        <a href="@Url.Action("Edit", "Contact", new {Id = @contact.Id})" class="mini-btn">
+                            <i class="fa fa-pencil"></i>
+                        </a>
+                        <a href="@Url.Action("Delete", "Contact", new {Id = @contact.Id})" class="mini-btn">
+                            <i class="fa fa-trash"></i>
+                        </a>
+                    </td>
+                </tr>
+            }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <div class="text-center">
+            No Locations for this Customer
+        </div>
+    }
 </div>

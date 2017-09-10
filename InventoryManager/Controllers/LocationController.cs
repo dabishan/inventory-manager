@@ -38,7 +38,7 @@ namespace InventoryManager.Controllers
             db.SaveChanges();
 
             TempData["AlertMessage"] = "Location Saved";
-            return RedirectToAction("Edit", "Customer", new { Id = c.CustomerId });
+            return RedirectToAction("Show", "Customer", new { Id = c.CustomerId });
         }
 
         public ActionResult Edit(int? Id)
@@ -69,7 +69,7 @@ namespace InventoryManager.Controllers
             db.SaveChanges();
 
             TempData["AlertMessage"] = "Location Saved";
-            return RedirectToAction("Edit", "Customer", new { Id = c.CustomerId });
+            return RedirectToAction("Show", "Customer", new { Id = c.CustomerId });
         }
 
         public void MapLocation(Location locationToUpdate, LocationData data)
