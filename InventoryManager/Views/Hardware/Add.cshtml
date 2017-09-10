@@ -1,15 +1,23 @@
 ﻿@model InventoryManager.ViewModel.HardwareData
 @{
-    ViewBag.Title = "Add Inventory";
-    ViewBag.Submit = "Save Inventory";
+    ViewBag.Title = "Add Hardware";
+    ViewBag.Submit = "Add Hardware";
 
     Layout = "../Shared/_FormLayout.cshtml";
 
 }
 
-@section FormControls {
-    <a href="@Model.ReferrerUrl" class="btn btn-default">Go Back</a>
-    <button type="button" onclick="javascript: document.getElementById('form-add').submit();" class="btn btn-primary">@ViewBag.Submit</button>
+@section PageHead{
+    <h2>@ViewBag.Title</h2>
+}
+
+@section MenuControls {
+    <a href="@Model.ReferrerUrl" class="btn btn-default">
+        <i class="fa fa-undo"></i> Cancel
+    </a>
+    <button type="button" onclick="javascript: document.getElementById('form-add').submit();" class="btn btn-primary">
+        <i class="fa fa-plus"></i> @ViewBag.Submit
+    </button>
 }
 
 <div class="container-fluid">
@@ -18,7 +26,7 @@
     {
         @Html.AntiForgeryToken()
 
-        @Html.Partial("__form_add_hardware")
+        Html.RenderPartial("__form_add_hardware");
     }
     
 </div>

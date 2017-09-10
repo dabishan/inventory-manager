@@ -1,53 +1,60 @@
-﻿
-<!DOCTYPE html>
-<html>
+﻿<!DOCTYPE html>
+<html lang="en">
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - WebApplication</title>
-    <link rel="stylesheet" href="~/Content/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/Content/jquery-ui.min.css" />
-    <link rel="stylesheet" href="~/Content/app.styles.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+    <title>@ViewData["Title"] - InventoryManager</title>
+
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <link href="~/Content/app.styles.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <script src="~/Content/app.bundle.js"></script>
 </head>
 <body>
 
-@Html.Partial("_header")
+    @{ Html.RenderPartial("_header");}
 
-<div class="container body-content">
-    @if (TempData["AlertMessage"] != null)
-    {
-        <div class="alert alert-success">
-            @TempData["AlertMessage"];
-        </div>
-    }
-        
-    <div class="page-head">
-        <div class="row">
-            <div class="col-sm-6">
-                <div class="title">@ViewBag.Title</div>
+    <div class="container content">
+        @if (TempData["AlertMessage"] != null)
+        {
+            <div class="alert alert-success">
+                @TempData["AlertMessage"]
             </div>
-            <div class="col-sm-6">
-                <div class="controls">
-                    @RenderSection("FormControls", required: false)
+        }
+        
+        <div class="page-head row">
+            <div class="page-name col-sm-6">
+                @RenderSection("PageHead", false)
+            </div>
+
+            <div class="controls col-sm-6">
+                <div class="menu">
+                    @RenderSection("MenuControls", false)
                 </div>
             </div>
         </div>
+        
+        <div class="separator"></div>
+        
+        <div class="data">
+            @RenderBody()
+        </div>
+
     </div>
+    <hr />
 
-    @RenderBody()
-</div>
-<hr />
+    @{ Html.RenderPartial("_footer");}
 
-@Html.Partial("_footer")
-
-<environment names="Development">
-    <script src="~/Scripts/jquery-1.10.2.js"></script>
-    <script src="~/Scripts/bootstrap.js"></script>
-    <script src="~/Scripts/jquery-ui.min.js"></script>
-    <script src="~/Scripts/JavaScript.js"></script>
-</environment>
+    <environment names="Development">
+        <script src="~/Scripts/jquery-1.10.2.js"></script>
+        <script src="~/Scripts/bootstrap.js"></script>
+    </environment>
 
 
-@RenderSection("scripts", required: false)
+    @RenderSection("scripts", required: false)
 </body>
 </html>

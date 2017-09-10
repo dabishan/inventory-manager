@@ -107,7 +107,7 @@ select.form-control {
   .separator {
     margin-top:8px;
     border-bottom: solid 1px $gray;
-    padding-top:8px;
+    margin-bottom:8px;
     display: block;
   }
 
@@ -128,7 +128,7 @@ select.form-control {
       border-radius: 15px;
       background: $gray;
       width: 100%;
-      height: 34px;
+      min-height: 34px;
       padding: 6px 12px;
     }
   }
@@ -146,14 +146,15 @@ select.form-control {
       }
 
       thead th{
-        padding: 0;
-        border-top: solid 1px $dark-gray;
         border-bottom: solid 1px $dark-gray;
       }
 
       tr {
-        
         border-bottom: solid 1px $dark-gray;
+
+        td {
+            vertical-align: middle;
+        }
       }
     }
   

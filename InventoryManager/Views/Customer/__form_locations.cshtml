@@ -1,43 +1,48 @@
 ﻿@model InventoryManager.ViewModel.CustomerData
-    
-<div class="page-head">
-    <div class="row">
-        <div class="col-sm-6">
-            <h3>Customer Locations</h3>
-        </div>
-        <div class="col-sm-6">
-            <div class="controls">
-                <a class="btn btn-primary" href="@Url.Action("Add", "Location", new { CustomerId = Model.Id})">
-                    <span class="glyphicon glyphicon-plus-sign"></span>
-                </a>
-            </div>
+
+<div class="section">
+    <div class="section-header">
+        <h3>Customer Location</h3>
+        <div class="section-controls">
+            <a href="@Url.Action("Add", "Location", new { CustomerId = Model.Id})">
+                <span class="fa fa-plus"></span> Add Location
+            </a>
         </div>
     </div>
+    <div class="separator"></div>
 </div>
 
-
-<div class="clearfix">
+<div class="row">
     @foreach (var location in Model.Locations)
     {
         <div class="col-sm-3">
-            <address>
+            <div>
                 @location.Street<br/>
                 @if (location.Unit != null)
                 {
                     @location.Unit<br/>
                 }
                 @location.City, @location.State @location.Zip
-            </address>
-            <div class="phone">
-                <span class="glyphicon glyphicon-phone-alt"></span> @location.Phone
             </div>
-            <div class="fax">
-                <span class="glyphicon glyphicon-phone-alt"></span> @location.Fax
-            </div>
-        
+            @if (location.Phone != null)
+            {
+                <div class="phone">
+                    <span class="fa fa-phone"></span> @location.Phone
+                </div>
+            }
+            @if (location.Fax != null)
+            {
+                <div class="fax">
+                    <span class="fa fa-fax"></span> @location.Fax
+                </div>
+            }
+
             <div class="controls">
-                <a href="@Url.Action("Edit", "Location", new {Id = location.Id})">
-                    <span class="glyphicon glyphicon-pencil"></span>
+                <a href="@Url.Action("Edit", "Location", new {Id = location.Id})" class="mini-btn">
+                    <span class="fa fa-pencil"></span>
+                </a>
+                <a href="@Url.Action("Delete", "Location", new {Id = location.Id})" class="mini-btn">
+                    <span class="fa fa-trash"></span>
                 </a>
             </div>
         </div>

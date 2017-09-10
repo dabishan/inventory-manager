@@ -184,18 +184,20 @@
     <Compile Include="ViewModel\ViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\bootstrap.css" />
-    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\app.bundle.js" />
+    <Content Include="Content\app.styles.css" />
+    <Content Include="Content\img\select-down-arrow.svg" />
+    <Content Include="Src\css\bootstrap.min.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
-    <Content Include="Content\Site.css" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Src\app.js" />
+    <Content Include="Src\img\select-down-arrow.svg" />
     <Content Include="Src\js\form.js" />
     <Content Include="webpack.config.js" />
     <Content Include="package.json" />

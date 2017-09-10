@@ -7,9 +7,17 @@
 
 }
 
-@section FormControls {
-    <a class="btn btn-default">Go Back</a>
-    <button type="button" onclick="javascript: document.getElementById('form-add').submit();" class="btn btn-primary">@ViewBag.Submit</button>
+@section PageHead{
+    <h2>@ViewBag.Title</h2>
+}
+
+@section MenuControls {
+    <a href="@Model.ReferrerUrl" class="btn btn-default">
+        <i class="fa fa-undo"></i> Cancel
+    </a>
+    <button type="button" onclick="javascript: document.getElementById('form-add').submit();" class="btn btn-primary">
+        <i class="fa fa-plus"></i> @ViewBag.Submit
+    </button>
 }
 
 <div class="container-fluid">
@@ -20,7 +28,7 @@
         
         @Html.HiddenFor(l => l.CustomerId)
 
-        @Html.Partial("__form_add_contact")
+        Html.RenderPartial("__form_add_contact");
 
     }
     
