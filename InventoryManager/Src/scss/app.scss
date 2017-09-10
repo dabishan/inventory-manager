@@ -1,26 +1,200 @@
-.page-head {
-  margin-top: 25px;
-  margin-bottom: 10px;
-  padding-bottom: 10px;
-  border-bottom: solid 1px #505050;
-  
-  .title {
-    font-size:28px;
+$gray: #EFEFEF;
+$dark-gray: #838383;
+$primary-color: #CC1433;
+$secondary-color: #2649A8;
+body {
+  font-family: 'Quicksand', Arial, Helvetica, sans-serif;
+}
+
+header {
+  border-bottom: solid 2px $gray;
+}
+
+a, a:visited, a:active, a:focus {
+  color: $primary-color;
+}
+a:hover, a:active, a:focus {
+  text-decoration: none;
+}
+select.form-control {
+  background-image: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  padding-left:25px;
+  background: url("../img/select-down-arrow.svg") #F7F7F7 no-repeat;
+  border: solid 1px #cccccc;
+  box-shadow: inset 1px 1px 5px #fafafa;
+
+  &::-ms-expand {
+    display: none;
   }
-  
-  .controls {
-    text-align: right;
-    .buttons {
-      padding-right:20px;
+}
+.navbar{
+  margin-bottom: 0px;
+  .hamburger {
+    font-size: 28px;
+    color: $dark-gray;
+  }
+  .navbar-brand {
+    font-size:24px;
+
+    a, a:visited {
+      color: $dark-gray;
+    }
+  }
+
+  input.search {
+    border-radius: 20px;
+  }
+
+  .navbar-menu {
+    font-size:24px;
+
+    a.logoff{
+      color: #de5d33;
     }
   }
 }
 
-.form{
-  padding: 25px 0;
-  
+.content {
+  margin-top:40px;
+
+  .page-head {
+    margin-top: 40px;
+
+    .page-name {
+      h2 {
+        .label {
+          font-size: 12px;
+          vertical-align: middle;
+        }
+      }
+
+      .info {
+        font-size: 12px;
+
+        .link {
+          font-size:14px;
+        }
+      }
+    }
+
+    .controls {
+      text-align: right;
+      margin-top:15px;
+
+      ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+
+        li {
+          display: inline-block;
+          padding:8px 10px;
+
+          a {
+            color: black;
+
+            &:hover {
+              color: $primary-color;
+            }
+          }
+        }
+      }
+    }
+  }
+
   .separator {
-    margin-bottom:15px;
-    border-bottom: solid 1px #F3F3F3;
+    margin-top:8px;
+    border-bottom: solid 1px $gray;
+    padding-top:8px;
+    display: block;
+  }
+
+  .data {
+    margin-top: 40px;
+
+    .label {
+      font-size: 12px;
+      padding-top:8px;
+      vertical-align: middle;
+    }
+
+    .form-control {
+      border-radius: 15px;
+    }
+
+    .data-box {
+      border-radius: 15px;
+      background: $gray;
+      width: 100%;
+      height: 34px;
+      padding: 6px 12px;
+    }
+  }
+
+  .list {
+    table.table {
+      color: $dark-gray;
+
+      a, a:focus, a:active{
+        color: $dark-gray;
+      }
+
+      a:hover {
+        color: $primary-color;
+      }
+
+      thead th{
+        padding: 0;
+        border-top: solid 1px $dark-gray;
+        border-bottom: solid 1px $dark-gray;
+      }
+
+      tr {
+        
+        border-bottom: solid 1px $dark-gray;
+      }
+    }
+  
+    .filter {
+      display: inline-block;
+      padding:8px;
+     
+      .filter-name {
+        display: inline-block;
+        margin-right: 8px;
+      }
+      .control {
+        display: inline-block;
+  
+        .form-control {
+          padding:2px 20px;
+          height:25px;
+          border-radius: 12px;
+        }
+      }
+    }
+
+    .menu {
+      text-align: right;
+
+      a{
+        font-size: 16px;
+        display: inline-block;
+        padding:8px;
+      }
+    }
+  }
+
+  .section {
+    margin-top:65px;
+  }
+
+  a.mini-btn {
+    display: inline-block;
+    font-size:18px;
+    margin-left: 8px;
+    margin-right: 8px;
   }
 }

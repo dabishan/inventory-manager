@@ -11,7 +11,7 @@ module.exports = {
     },
     output : {
         path: __dirname + '/Content',
-        filename: '[name].bundle.js'
+        filename: '[name].bundle.js',
     },
     module: {
         rules: [
@@ -19,8 +19,19 @@ module.exports = {
                 test: /\.scss$/,
                 use: ExtractTextPlugin.extract({
                     fallback: "style-loader",
-                    use: ["css-loader", "sass-loader"],
+                    use: ["css-loader", "sass-loader?sourceMap"]
                 })
+            },
+            {
+                test: /\.(png|jpg|jpeg|svg)$/,
+                exclude: /node_modules/,
+                use: {
+                    loader: "file-loader",
+                    options: {
+                        name: '[name].[ext]',
+                        outputPath: 'img/'
+                    }
+                }
             },
             {
                 test: /\.js$/,
@@ -28,7 +39,6 @@ module.exports = {
                 use: "babel-loader"
             }
         ],
-
     },
     plugins: [
         new ExtractTextPlugin("[name].styles.css")
