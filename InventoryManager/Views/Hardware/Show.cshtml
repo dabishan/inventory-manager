@@ -1,8 +1,37 @@
-﻿@model InventoryManager.ViewModel.HardwareData
+﻿@model InventoryManager.ViewModel.HardwareView
 @{
-    ViewBag.Title = "View Inventory";
+    ViewBag.Title = Model.Hardware.Inventory.Name;
 
     Layout = "../Shared/_FormLayout.cshtml";
+}
+
+
+@section PageHead{
+    <h2>@Model.Hardware.Inventory.Name</h2>
+    <div class="info">
+        <span class="info-type"><i class="fa fa-user"></i> Owner: </span>
+        <span class="link">
+            <a href="#">Owner Name</a> @* TODO change when owner class is ready*@
+        </span>
+    </div>
+}
+
+@section MenuControls {
+    <ul>
+        <li>
+            <a href="@Url.Action("Delete", "Hardware", new {Id = Model.Hardware.Id})">
+                <i class="fa fa-trash"></i> Delete
+            </a>
+        </li>
+        <li>
+            <a href="@Url.Action("Edit", "Hardware", new {Id = Model.Hardware.Id})">
+                <i class="fa fa-pencil"></i> Edit
+            </a>
+        </li>
+    </ul>
+
+
+    
 }
 
 @{Html.RenderPartial("_form_view");}

@@ -68,4 +68,9 @@ namespace InventoryManager.ViewModel
     {
         public IList<Hardware> Hardwares;
     }
+
+    public class HardwareView : ViewModel
+    {
+        public Hardware Hardware;
+    }
 }
