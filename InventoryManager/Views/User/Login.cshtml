@@ -2,34 +2,22 @@
 @{
     ViewBag.Title = "Login";
 
-    Layout = "../Shared/_FormLayout.cshtml";
+    Layout = "../Shared/_FormLogin.cshtml";
 }
 
 
-@using (Html.BeginForm("CheckLogin", "User", FormMethod.Post))
+@using (Html.BeginForm("Login", "User", FormMethod.Post))
 {
     @Html.AntiForgeryToken()
-    <div class="login-box">
-        <div class="row">
-            @Html.LabelFor(l => l.Username, htmlAttributes: new { @class = "col-sm-3" })
-            <div class="col-sm-9">
-                <div class="form-group">
-                    @Html.TextBoxFor(l => l.Username, htmlAttributes: new { @class = "form-control" })
-                    @Html.ValidationMessage("Username", "", new { @class = "text-danger", @rows = "6" })
-                </div>
-            </div>
+    <div class="login">
+        <div class="form-group">
+            @Html.TextBoxFor(l => l.Username, htmlAttributes: new { @class = "form-control", @placeholder = "Username" })
+            @Html.ValidationMessage("Username", "", new { @class = "text-danger", @rows = "6" })
         </div>
-
-        <div class="row">
-            @Html.LabelFor(l => l.Password, htmlAttributes: new { @class = "col-sm-3" })
-            <div class="col-sm-9">
-                <div class="form-group">
-                    @Html.TextBoxFor(l => l.Password, htmlAttributes: new { @class = "form-control" })
-                    @Html.ValidationMessage("Password", "", new { @class = "text-danger", @rows = "6" })
-                </div>
-            </div>
+        <div class="form-group">
+            @Html.PasswordFor(l => l.Password, htmlAttributes: new { @class = "form-control", @placeholder = "Password" })
+            @Html.ValidationMessage("Password", "", new { @class = "text-danger", @rows = "6" })
         </div>
-
         <div class="controls">
             <button class="btn btn-primary btn-block" type="submit">Login</button>
         </div>
