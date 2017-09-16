@@ -21,6 +21,18 @@ namespace InventoryManager.Models
         public string Name { get; set; }
         public DateTime CreatedOn { get; set; }
         public DateTime ModifiedOn { get; set; }
+
+        public ICollection<Inventory> Inventories { get; set; }
+
+        public class OwnerConfig : EntityTypeConfiguration<Owner>
+        {
+            public OwnerConfig()
+            {
+                HasMany(o => o.Inventories)
+                    .WithRequired(o => o.Owner)
+                    .HasForeignKey(o => o.OwnerId);
+            }
+        }
     }
 
     public class GbhContact

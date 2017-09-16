@@ -119,6 +119,20 @@ namespace InventoryManager.Controllers
             return View(viewModel);
         }
 
+        public ActionResult ListInventories(int? Id)
+        {
+            if (Id == null) return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+
+            var customer = db.Customers
+                .Include(c => c.Owner.Inventories)
+                .SingleOrDefault(c => c.Id == Id);
+
+            if (customer == null) return new HttpNotFoundResult();
+
+            
+            return View(customer);
+        }
+
         protected override void Dispose(bool disposing)
         {
             db.Dispose();

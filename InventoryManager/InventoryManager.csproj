@@ -259,6 +259,7 @@
     <Content Include="Views\Customer\Show.cshtml" />
     <Content Include="Views\Customer\_form_view.cshtml" />
     <Content Include="Views\Shared\_FormLogin.cshtml" />
+    <Content Include="Views\Customer\ListInventories.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
