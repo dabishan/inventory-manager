@@ -18,6 +18,7 @@ namespace InventoryManager.Models
     {
         public int Id { get; set; }
         public OwnerType OwnerType { get; set; }
+        public string Name { get; set; }
         public DateTime CreatedOn { get; set; }
         public DateTime ModifiedOn { get; set; }
     }
@@ -34,7 +35,6 @@ namespace InventoryManager.Models
     public class Customer
     {
         public int Id { get; set; }
-        public string Name { get; set; }
         public string Description { get; set; }
 
         public Owner Owner { get; set; }
@@ -46,9 +46,6 @@ namespace InventoryManager.Models
         {
             public CustomerConfig()
             {
-                Property(c => c.Name)
-                    .HasMaxLength(60)
-                    .IsRequired();
 
                 Property(c => c.Description)
                     .HasMaxLength(400)

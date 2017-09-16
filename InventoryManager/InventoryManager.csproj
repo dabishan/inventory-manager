@@ -173,6 +173,10 @@
     <Compile Include="Migrations\201709040428190_RenameSoftwareIDAndHardwareId.Designer.cs">
       <DependentUpon>201709040428190_RenameSoftwareIDAndHardwareId.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201709161749463_MoveNameFromCustomerToOwnerTable.cs" />
+    <Compile Include="Migrations\201709161749463_MoveNameFromCustomerToOwnerTable.Designer.cs">
+      <DependentUpon>201709161749463_MoveNameFromCustomerToOwnerTable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\History.cs" />
     <Compile Include="Models\Inventory.cs" />
@@ -284,6 +288,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201709040428190_RenameSoftwareIDAndHardwareId.resx">
       <DependentUpon>201709040428190_RenameSoftwareIDAndHardwareId.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709161749463_MoveNameFromCustomerToOwnerTable.resx">
+      <DependentUpon>201709161749463_MoveNameFromCustomerToOwnerTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
