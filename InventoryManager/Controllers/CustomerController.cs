@@ -49,14 +49,14 @@ namespace InventoryManager.Controllers
 
         private void MapCustomer(Customer customerToUpdate, CustomerData data)
         {
-            customerToUpdate.Name = data.Name;
+            customerToUpdate.Owner.Name = data.Name;
             customerToUpdate.Description = data.Description;
             customerToUpdate.Owner.ModifiedOn = DateTime.Now.Date;
         }
 
         private void PopulateCustomer(Customer customer, CustomerData customerToDisplay)
         {
-            customerToDisplay.Name = customer.Name;
+            customerToDisplay.Name = customer.Owner.Name;
             customerToDisplay.Description = customer.Description;
             customerToDisplay.Id = customer.Id;
         }

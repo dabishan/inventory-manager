@@ -33,6 +33,7 @@ namespace InventoryManager.Controllers
             viewModel.HardwareTypes = db.HardwareTypes.Where(h => h.Status == true);
             viewModel.Vendors = db.Vendors.Where(v => v.Status == true);
             viewModel.Makers = db.Makers.Where(m => m.Status == true);
+            viewModel.Owners = db.Owners.ToList();
 
             return View(viewModel);
         }
@@ -49,6 +50,7 @@ namespace InventoryManager.Controllers
                 h.HardwareTypes = db.HardwareTypes.Where(i => i.Status);
                 h.Vendors = db.Vendors.Where(i => i.Status);
                 h.Makers = db.Makers.Where(i => i.Status);
+                h.Owners = db.Owners.ToList();
 
                 return View(h);
             }
@@ -78,9 +80,7 @@ namespace InventoryManager.Controllers
             hardwareToUpdate.Inventory.OwnerId = data.OwnerId;
             hardwareToUpdate.Inventory.Status = data.Status == 0 ? InventoryStatus.Pending : data.Status;
             hardwareToUpdate.Inventory.ModifiedOn = DateTime.Now;
-
-            hardwareToUpdate.Inventory.OwnerId = 1; // TODO change when Owner Class is Done
-
+            
             hardwareToUpdate.HardwareTypeId = data.HardwareTypeId;
             hardwareToUpdate.WarrentyExpiration = data.WarrentyExpiration;
         }
@@ -120,6 +120,7 @@ namespace InventoryManager.Controllers
             viewModel.HardwareTypes = db.HardwareTypes.Where(h => h.Status == true);
             viewModel.Vendors = db.Vendors.Where(v => v.Status == true);
             viewModel.Makers = db.Makers.Where(m => m.Status == true);
+            viewModel.Owners = db.Owners.ToList();
 
             viewModel.ReferrerUrl = Request.UrlReferrer?.AbsoluteUri;
             return View(viewModel);
@@ -141,6 +142,7 @@ namespace InventoryManager.Controllers
                 h.HardwareTypes = db.HardwareTypes.Where(i => i.Status);
                 h.Vendors = db.Vendors.Where(i => i.Status);
                 h.Makers = db.Makers.Where(i => i.Status);
+                h.Owners = db.Owners.ToList();
 
                 return View(h);
             }
@@ -163,8 +165,8 @@ namespace InventoryManager.Controllers
                 .Include(h => h.Inventory.Maker)
                 .Include(h => h.Inventory.Vendor)
                 .Include(h => h.HardwareType)
-                .Single(h => h.Id == Id);
-
+                .Include(h => h.Inventory.Owner)
+                .SingleOrDefault(h => h.Id == Id);
 
             if (hardware == null) return new HttpNotFoundResult();
 

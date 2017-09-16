@@ -1,4 +1,5 @@
-﻿@model InventoryManager.ViewModel.HardwareData
+﻿@using InventoryManager.Models
+@model InventoryManager.ViewModel.HardwareData
 
 @*Form Body Start*@       
 <div class="form">
@@ -145,6 +146,36 @@
                     <div class="form-group">
                         @Html.TextBoxFor(h => h.WarrentyExpiration, htmlAttributes: new {@class = "form-control"})
                         @Html.ValidationMessageFor(h => h.WarrentyExpiration, "", new {@class = "text-danger"})
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="separator"></div>
+    <h2>Status Infomation</h2>
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="row">
+                @Html.LabelFor(h => h.Status, htmlAttributes: new {@class = "col-sm-3"})
+                <div class="col-sm-9">
+                    <div class="form-group">
+                        @Html.EnumDropDownListFor(h => h.Status,
+                            htmlAttributes: new {@class = "form-control"})
+                        @Html.ValidationMessageFor(h => h.Status, "", new {@class = "text-danger"})
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="row">
+                @Html.LabelFor(h => h.OwnerId, htmlAttributes: new {@class = "col-sm-3"})
+                <div class="col-sm-9">
+                    <div class="form-group">
+                        @Html.DropDownListFor(h => h.OwnerId,
+                            new SelectList(Model.Owners, "Id", "Name", Model.VendorId),
+                            htmlAttributes: new {@class = "form-control"})
+
+                        @Html.ValidationMessageFor(h => h.OwnerId, "", new {@class = "text-danger"})
                     </div>
                 </div>
             </div>

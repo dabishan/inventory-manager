@@ -199,3 +199,30 @@ select.form-control {
     margin-right: 8px;
   }
 }
+
+.label {
+    font-size: 14px;
+
+    &.label {
+        &-Pending {
+            background: #E02727;
+        }
+
+        &-Active {
+            background: #90CC1B
+        }
+
+        &-InActive {
+            background: #FC9F3A;
+        }
+
+        &-Decommissioned {
+            background: #5D8FD8;
+        }
+
+        &-UnAssigned {
+            background: #424242;
+
+        }
+    }
+}

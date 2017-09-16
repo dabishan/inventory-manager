@@ -62,6 +62,7 @@ namespace InventoryManager.ViewModel
         public IEnumerable<HardwareType> HardwareTypes { get; set; }
         public IEnumerable<Maker> Makers { get; set; }
         public IEnumerable<Vendor> Vendors { get; set; }
+        public IEnumerable<Owner> Owners { get; set; }
     }
 
     public class HardwareList : ViewModel
