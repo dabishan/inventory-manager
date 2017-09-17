@@ -1,0 +1,38 @@
+﻿
+@model InventoryManager.ViewModel.MakerTableView
+@{
+    ViewBag.Title = "Makers";
+    Layout = "../Shared/_FormLayout.cshtml";
+}
+
+@section PageHead{
+    <h2>@ViewBag.Title</h2>
+}
+
+@section MenuControls {
+}
+
+<div class="list">
+    <table class="table table-striped table-hover">
+        <thead>
+            <tr>
+                <th class="col-sm-8">Name</th>
+                <th class="col-sm-2 text-center">Inventory Count</th>
+                <th class="col-sm-2 text-right">Action</th>
+            </tr>
+        </thead>
+
+        @foreach (var makerTable in Model.MakerTables)
+        {
+            <tr class="">
+                <td>@makerTable.Maker.Name</td>
+                <td class="text-center">@makerTable.Count</td>
+                <td class="text-right">
+                    <a href="@Url.Action("ListInventories", "Maker", new {Id = makerTable.Maker.Id})" class="mini-btn">
+                        <i class="fa fa-list"></i> List
+                    </a>
+                </td>
+            </tr>
+        }
+    </table>
+</div>

@@ -152,6 +152,7 @@
     <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\HardwareController.cs" />
     <Compile Include="Controllers\HardwareTypeController.cs" />
+    <Compile Include="Controllers\MakerController.cs" />
     <Compile Include="Controllers\VendorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LocationController.cs" />
@@ -267,6 +268,8 @@
     <Content Include="Views\HardwareType\ListInventories.cshtml" />
     <Content Include="Views\Vendor\Index.cshtml" />
     <Content Include="Views\Vendor\ListInventories.cshtml" />
+    <Content Include="Views\Maker\Index.cshtml" />
+    <Content Include="Views\Maker\ListInventories.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

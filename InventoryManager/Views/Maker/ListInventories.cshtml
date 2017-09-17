@@ -1,0 +1,69 @@
+﻿@model InventoryManager.ViewModel.MakerInventoryList
+@{
+    ViewBag.Title = Model.Maker.Name;
+
+    Layout = "../Shared/_FormLayout.cshtml";
+}
+
+@section PageHead{
+    <h2>Hardware List: @ViewBag.Title
+
+    </h2>
+    <div class="info">
+        <span class="info-type">Total Inventories:</span>
+        @Model.Inventories.Count
+    </div>
+}
+
+@section MenuControls {
+    <ul>
+        <li>
+            <a href="@Url.Action("Index", "Maker")"><i class="fa fa-undo"></i> Back to Makers</a>
+        </li>
+    </ul>
+}
+
+<div class="list">
+    @if (Model.Inventories.Count > 0)
+    {
+        <table class="table table-striped table-hover">
+            <thead>
+                <tr>
+                    <th width="25%">Name</th>
+                    <th class="col-sm-2 text-center">Status</th>
+                    <th class="col-sm-2">Assigned to</th>
+                    <th class="col-sm-1 text-right">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var inventory in Model.Inventories)
+                {
+                    <tr>
+                        <td>
+                            @inventory.Name
+                        </td>
+                        <td class="text-center">
+                            <span class="label label-@inventory.Status">@inventory.Status</span>
+                        </td>
+                        <td>
+                            <a href="@Url.Action("Show", "Customer", new {Id = @inventory.Owner.Id})">
+                                <i class="fa fa-user"></i> @inventory.Owner.Name
+                            </a>
+                        </td>
+                        <td class="text-right">
+                            <a href="@Url.Action("Show", "Inventory", new {Id = @inventory.Id})" class="mini-btn">
+                                <i class="fa fa-eye"></i>
+                            </a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <div class="text-center">
+            No Inventories under @Model.Maker.Name
+        </div>
+    }
+</div>

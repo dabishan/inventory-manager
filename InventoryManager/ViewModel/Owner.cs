@@ -97,4 +97,21 @@ namespace InventoryManager.ViewModel
         public Vendor Vendor;
         public ICollection<Inventory> Inventories { get; set; }
     }
+
+    public class MakerTable
+    {
+        public Maker Maker { get; set; }
+        public int Count { get; set; }
+    }
+
+    public class MakerTableView
+    {
+        public IList<MakerTable> MakerTables { get; set; }
+    }
+
+    public class MakerInventoryList
+    {
+        public Maker Maker;
+        public ICollection<Inventory> Inventories { get; set; }
+    }
 }
