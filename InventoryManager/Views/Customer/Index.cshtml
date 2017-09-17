@@ -1,0 +1,45 @@
+﻿
+@model InventoryManager.ViewModel.CustomerListView
+@{
+    ViewBag.Title = "Customers";
+    Layout = "../Shared/_FormLayout.cshtml";
+}
+
+@section PageHead{
+    <h2>@ViewBag.Title</h2>
+}
+
+@section MenuControls {
+    <ul>
+        <li>
+
+        </li>
+    </ul>
+}
+<div class="list">
+    <table class="table table-striped table-hover">
+        <thead>
+        <tr>
+            <th class="col-sm-8">Name</th>
+            <th class="col-sm-2">Inventory Count</th>
+            <th class="col-sm-2 text-right">Action</th>
+        </tr>
+        </thead>
+
+        @foreach (var customerList in Model.CustomerLists)
+        {
+            <tr class="">
+                <td>@customerList.Customer.Owner.Name</td>
+                <td><a href="@Url.Action("ListInventories", "Customer", new {Id = customerList.Customer.Id})">@customerList.Count</a></td>
+                <td class="text-right">
+                    <a href="@Url.Action("Show", "Customer", new {Id = customerList.Customer.Id})" class="mini-btn">
+                        <i class="fa fa-eye"></i>
+                    </a>
+                    <a href="@Url.Action("Edit", "Customer", new {Id = customerList.Customer.Id})" class="mini-btn">
+                        <i class="fa fa-pencil"></i>
+                    </a>
+                </td>
+            </tr>
+        }
+    </table>
+</div>

@@ -15,7 +15,17 @@ namespace InventoryManager.Controllers
         // GET: Owner
         public ActionResult Index()
         {
-            return View();
+            var viewModel = new CustomerListView();
+
+            viewModel.CustomerLists = db.Customers
+                .Select(c => new CustomerList()
+                {
+                    Customer = c,
+                    Owner =  c.Owner,
+                    Count = c.Owner.Inventories.Count
+                }).ToList();
+
+            return View(viewModel);
         }
 
         public ActionResult Add()

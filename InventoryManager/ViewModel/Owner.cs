@@ -70,8 +70,16 @@ namespace InventoryManager.ViewModel
 
     }
 
-    public class OwnerList : ViewModel
+    public class CustomerList
     {
-        public IList<Owner> Owners { get; set; }
+        public Customer Customer { get; set; }
+        public Owner Owner { get; set; }
+        public int Count { get; set; }
     }
+    public class CustomerListView
+    {
+        public ICollection<CustomerList> CustomerLists { get; set; }
+    }
+    
+
 }
