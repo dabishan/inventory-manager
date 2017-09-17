@@ -74,4 +74,21 @@ namespace InventoryManager.ViewModel
     {
         public Hardware Hardware;
     }
+
+    public class HardwareTypeTable
+    {
+        public HardwareType HardwareType { get; set; }
+        public int Count { get; set; }
+    }
+
+    public class HardwareTypeTableView
+    {
+        public IList<HardwareTypeTable> HardwareTypeTables { get; set; }
+    }
+
+    public class HardwareTypeHardwareList
+    {
+        public HardwareType HardwareType;
+        public ICollection<Hardware> Hardwares { get; set; }
+    }
 }

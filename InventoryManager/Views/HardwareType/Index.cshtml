@@ -1,0 +1,38 @@
+﻿
+@model InventoryManager.ViewModel.HardwareTypeTableView
+@{
+    ViewBag.Title = "Hardware Types";
+    Layout = "../Shared/_FormLayout.cshtml";
+}
+
+@section PageHead{
+    <h2>@ViewBag.Title</h2>
+}
+
+@section MenuControls {
+}
+
+<div class="list">
+    <table class="table table-striped table-hover">
+        <thead>
+            <tr>
+                <th class="col-sm-8">Name</th>
+                <th class="col-sm-2 text-center">Hardware Count</th>
+                <th class="col-sm-2 text-right">Action</th>
+            </tr>
+        </thead>
+
+        @foreach (var hardwareType in Model.HardwareTypeTables)
+        {
+            <tr class="">
+                <td>@hardwareType.HardwareType.Name</td>
+                <td class="text-center">@hardwareType.Count</td>
+                <td class="text-right">
+                    <a href="@Url.Action("ListInventories", "HardwareType", new {Id = hardwareType.HardwareType.Id})" class="mini-btn">
+                        <i class="fa fa-list"></i> List
+                    </a>
+                </td>
+            </tr>
+        }
+    </table>
+</div>

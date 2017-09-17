@@ -151,6 +151,7 @@
     <Compile Include="Controllers\ContactController.cs" />
     <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\HardwareController.cs" />
+    <Compile Include="Controllers\HardwareTypeController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LocationController.cs" />
     <Compile Include="Controllers\UserController.cs" />
@@ -261,9 +262,12 @@
     <Content Include="Views\Shared\_FormLogin.cshtml" />
     <Content Include="Views\Customer\ListInventories.cshtml" />
     <Content Include="Views\Customer\Index.cshtml" />
+    <Content Include="Views\HardwareType\Index.cshtml" />
+    <Content Include="Views\HardwareType\ListInventories.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\NewFolder1\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
