@@ -80,6 +80,21 @@ namespace InventoryManager.ViewModel
     {
         public ICollection<CustomerList> CustomerLists { get; set; }
     }
-    
 
+    public class VendorTable
+    {
+        public Vendor Vendor { get; set; }
+        public int Count { get; set; }
+    }
+
+    public class VendorTableView
+    {
+        public IList<VendorTable> VendorTables { get; set; }
+    }
+
+    public class VendorInventoryList
+    {
+        public Vendor Vendor;
+        public ICollection<Inventory> Inventories { get; set; }
+    }
 }
