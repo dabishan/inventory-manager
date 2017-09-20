@@ -1,5 +1,2 @@
-const $ = require("jquery");
-
-const bootstrap = require("bootstrap");
-
 const css = require("./scss/app.scss");
+const simpleSidebar = require("./css/simple-sidebar.css");

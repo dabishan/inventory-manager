@@ -225,3 +225,18 @@ select.form-control {
         }
     }
 }
+.sidebar-nav {
+    padding-top:90px;
+
+    .nav-pills a{
+        font-size:18px;
+        color: $dark-gray;
+        border-radius: 0;
+        padding: 16px 20px;
+
+        &:hover, &:focus, &:active{
+            background: $primary-color;
+            color: #ffffff;
+        }
+    }
+}

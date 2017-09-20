@@ -15,43 +15,56 @@
     <script src="~/Content/app.bundle.js"></script>
 </head>
 <body>
-
-    @{ Html.RenderPartial("_header");}
-
-    <div class="container content">
-        @if (TempData["AlertMessage"] != null)
-        {
-            <div class="alert alert-success">
-                @TempData["AlertMessage"]
-            </div>
-        }
+    
+@{ Html.RenderPartial("_header");}
+<div id="wrapper" class="toggled">
+    @{ Html.RenderPartial("_sidebar");}
+    <div id="page-content-wrapper">
+        <div class="container-fluid content">
+            @if (TempData["AlertMessage"] != null)
+            {
+                <div class="alert alert-success">
+                    @TempData["AlertMessage"]
+                </div>
+            }
         
-        <div class="page-head row">
-            <div class="page-name col-sm-6">
-                @RenderSection("PageHead", false)
-            </div>
+            <div class="page-head row">
+                <div class="page-name col-sm-6">
+                    @RenderSection("PageHead", false)
+                </div>
 
-            <div class="controls col-sm-6">
-                <div class="menu">
-                    @RenderSection("MenuControls", false)
+                <div class="controls col-sm-6">
+                    <div class="menu">
+                        @RenderSection("MenuControls", false)
+                    </div>
                 </div>
             </div>
-        </div>
         
-        <div class="separator"></div>
+            <div class="separator"></div>
         
-        <div class="data">
-            @RenderBody()
+            <div class="data">
+                @RenderBody()
+            </div>
+
         </div>
+        <hr />
+
+        @{ Html.RenderPartial("_footer");}
 
     </div>
-    <hr />
 
-    @{ Html.RenderPartial("_footer");}
+</div>
 
     <environment names="Development">
         <script src="~/Scripts/jquery-1.10.2.js"></script>
         <script src="~/Scripts/bootstrap.js"></script>
+        <script>
+            $(document).ready(function() {
+                $("#menu-toggle").click(function(e) {
+                    $("#wrapper").toggleClass("toggled");
+                });
+            });
+        </script>
     </environment>
 
 
