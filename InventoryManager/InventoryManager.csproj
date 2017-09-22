@@ -153,6 +153,7 @@
     <Compile Include="Controllers\HardwareController.cs" />
     <Compile Include="Controllers\HardwareTypeController.cs" />
     <Compile Include="Controllers\MakerController.cs" />
+    <Compile Include="Controllers\SearchController.cs" />
     <Compile Include="Controllers\VendorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LocationController.cs" />
@@ -189,6 +190,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModel\Inventory.cs" />
     <Compile Include="ViewModel\Owner.cs" />
+    <Compile Include="ViewModel\Search.cs" />
     <Compile Include="ViewModel\User.cs" />
     <Compile Include="ViewModel\ViewModel.cs" />
   </ItemGroup>
@@ -209,7 +211,6 @@
     <Content Include="Src\css\simple-sidebar.css" />
     <Content Include="Src\img\select-down-arrow.svg" />
     <Content Include="Src\js\form.js" />
-    <Content Include="Scripts\simple-sidebar.js" />
     <Content Include="webpack.config.js" />
     <Content Include="package.json" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
@@ -273,6 +274,7 @@
     <Content Include="Views\Maker\Index.cshtml" />
     <Content Include="Views\Maker\ListInventories.cshtml" />
     <Content Include="Views\Shared\_sidebar.cshtml" />
+    <Content Include="Views\Search\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

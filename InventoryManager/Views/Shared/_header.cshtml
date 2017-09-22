@@ -18,7 +18,10 @@
                 <li>
                     <div class="navbar-form">
                         <div class="form-group">
-                            <input class="search form-control" placeholder="Search ... " />
+                            @using (Html.BeginForm("Index", "Search", FormMethod.Get, htmlAttributes: new {@id="form-search"}))
+                            {
+                                <input id="search" name="query" class="search form-control" placeholder="Search ... "/>
+                            }
                         </div>
                     </div>
                 </li>
@@ -32,3 +35,13 @@
         </div>
     </div>
 </header>
+<script>
+    $(document).ready(function() {
+        $("#search").keypress(function(e) {
+            if (e.which === 13) {
+                 $('#form-search').submit();
+            }
+        });
+    })
+</script>
+
