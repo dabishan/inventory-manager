@@ -7,6 +7,7 @@ using System.Web;
 using System.Web.Mvc;
 using InventoryManager.Models;
 using InventoryManager.ViewModel;
+using PagedList;
 
 namespace InventoryManager.Controllers
 {
@@ -14,24 +15,21 @@ namespace InventoryManager.Controllers
     {
         private InventoryContext db = new InventoryContext();
         // GET: HardwareType
-        public ActionResult Index()
+        public ActionResult Index(MakerTableView viewModel)
         {
-            var makers = db.Makers
+            viewModel.MakerTables = db.Makers
                 .Select(h => new MakerTable()
                 {
                     Maker = h,
                     Count = h.Inventories.Count
-                });
+                })
+                .OrderBy(m => m.Maker.Name)
+                .ToPagedList(viewModel.Page, viewModel.PageSize);
 
-            var viewModel = new MakerTableView()
-            {
-                MakerTables = makers.ToList()
-            };
-            
             return View(viewModel);
         }
 
-        public ActionResult ListInventories(int? Id)
+        public ActionResult ListInventories(int? Id, MakerInventoryList viewModel)
         {
             if (Id == null) return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
 
@@ -39,15 +37,14 @@ namespace InventoryManager.Controllers
 
             if(maker == null) return new HttpNotFoundResult();
 
-            var inventories = db.Inventories.Where(h => h.MakerId == maker.Id)
-                .Include(i => i.Owner)
-                .ToList();
+            viewModel.Maker = maker;
 
-            var viewModel = new MakerInventoryList()
-            {
-                Inventories = inventories,
-                Maker = maker
-            };
+            viewModel.Inventories = db.Inventories
+                .Where(h => h.MakerId == maker.Id)
+                .Include(i => i.Owner)
+                .OrderBy(m => m.Name)
+                .ToPagedList(viewModel.Page, viewModel.PageSize);
+
             return View(viewModel);
         }
 

@@ -1,70 +1,77 @@
-﻿@model InventoryManager.Models.Customer
+﻿@using PagedList.Mvc
+@model InventoryManager.ViewModel.CustomerHardwareView
 @{
-    ViewBag.Title = Model.Owner.Name;
+    ViewBag.Title = Model.Customer.Owner.Name;
 
     Layout = "../Shared/_FormLayout.cshtml";
 }
 
 @section PageHead{
-    <h2>Inventory List: 
-        <a href="@Url.Action("Show", "Customer", new {Id = Model.Id})">
+    <h2><a href="@Url.Action("Show", "Customer", new {Id = Model.Customer.Id})">
             @ViewBag.Title
         </a>
     </h2>
     <div class="info">
         <span class="info-type">Total Inventories: </span>
-        @Model.Owner.Inventories.Count
+        @Model.Inventories.Count
     </div>
 }
 
 @section MenuControls {
     <ul>
         <li>
-            
+            <a href="@Url.Action("Index", "Customer")"><i class="fa fa-undo"></i> Back to Customers</a>
         </li>
     </ul>
 }
 
 <div class="list">
-    @if (Model.Owner.Inventories.Count > 0)
+    @if (Model.Inventories.Count > 0)
     {
         <table class="table table-striped table-hover">
             <thead>
-                <tr>
-                    <th class="col-sm-6">Name</th>
-                    <th class="col-sm-2 text-center">Status</th>
-                    <th class="col-sm-2">Created On</th>
-                    <th class="col-sm-1 text-right">Action</th>
-                </tr>
+            <tr>
+                <th class="col-sm-6">Name</th>
+                <th class="col-sm-2 text-center">Status</th>
+                <th class="col-sm-2">Created On</th>
+                <th class="col-sm-1 text-right">Action</th>
+            </tr>
             </thead>
             <tbody>
-                @foreach (var inventory in Model.Owner.Inventories)
-                {
-                    <tr>
-                        <td>
-                            <a href="#">
-                                @inventory.Name
-                            </a>
-                        </td>
-                        <td class="text-center">
-                            <span class="label label-@inventory.Status">@inventory.Status</span>
-                        </td>
-                        <td>@inventory.CreatedOn</td>
-                        <td class="text-right">
-                            <a href="@Url.Action("Show", "Inventory", new {Id = @inventory.Id})" class="mini-btn">
-                                <i class="fa fa-eye"></i>
-                            </a>
+            @foreach (var inventory in Model.Inventories)
+            {
+                <tr>
+                    <td>
+                        <a href="#">
+                            @inventory.Name
+                        </a>
+                    </td>
+                    <td class="text-center">
+                        <span class="label label-@inventory.Status">@inventory.Status</span>
+                    </td>
+                    <td>@inventory.CreatedOn</td>
+                    <td class="text-right">
+                        <a href="@Url.Action("Show", "Inventory", new {Id = @inventory.Id})" class="mini-btn">
+                            <i class="fa fa-eye"></i>
+                        </a>
 
-                        </td>
-                    </tr>
-                }
+                    </td>
+                </tr>
+            }
             </tbody>
         </table>
+        if (Model.Inventories.PageSize < Model.Inventories.TotalItemCount)
+         {
+             <div class="text-center">
+                 @Html.PagedListPager(Model.Inventories, page => Url.Action("ListInventories", "Customer",
+                     new {Id = Model.Customer.Id, page}))
+             </div>
+         }
     }
     else
     {
         <div class="text-center">
-            No Inventories Assigned to @Model.Owner.Name
+            No Inventories Assigned to @Model.Customer.Owner.Name
         </div>
     }
 </div>

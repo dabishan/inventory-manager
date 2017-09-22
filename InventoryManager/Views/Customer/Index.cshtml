@@ -1,4 +1,5 @@
 ﻿
+@using PagedList.Mvc
 @model InventoryManager.ViewModel.CustomerListView
 @{
     ViewBag.Title = "Customers";
@@ -42,4 +43,12 @@
             </tr>
         }
     </table>
+    
+    @if (Model.CustomerLists.PageSize < Model.CustomerLists.TotalItemCount)
+    {
+        <div class="text-center">
+            @Html.PagedListPager(Model.CustomerLists, page => Url.Action("Index",
+                new {page}))
+        </div>
+    }
 </div>

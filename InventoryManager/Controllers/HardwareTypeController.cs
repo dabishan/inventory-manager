@@ -7,6 +7,7 @@ using System.Web;
 using System.Web.Mvc;
 using InventoryManager.Models;
 using InventoryManager.ViewModel;
+using PagedList;
 
 namespace InventoryManager.Controllers
 {
@@ -14,24 +15,21 @@ namespace InventoryManager.Controllers
     {
         private InventoryContext db = new InventoryContext();
         // GET: HardwareType
-        public ActionResult Index()
+        public ActionResult Index(HardwareTypeTableView viewModel)
         {
-            var hardwareTypes = db.HardwareTypes
+            viewModel.HardwareTypeTables = db.HardwareTypes
                 .Select(h => new HardwareTypeTable()
                 {
                     HardwareType = h,
                     Count = h.Hardwares.Count
-                });
+                })
+                .OrderBy(h => h.HardwareType.Name)
+                .ToPagedList(viewModel.Page, viewModel.PageSize);
 
-            var viewModel = new HardwareTypeTableView()
-            {
-                HardwareTypeTables = hardwareTypes.ToList()
-            };
-            
             return View(viewModel);
         }
 
-        public ActionResult ListInventories(int? Id)
+        public ActionResult ListInventories(int? Id, HardwareTypeHardwareList viewModel)
         {
             if (Id == null) return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
 
@@ -39,15 +37,13 @@ namespace InventoryManager.Controllers
 
             if(hardwareType == null) return new HttpNotFoundResult();
 
-            var hardwares = db.Hardwares.Where(h => h.HardwareTypeId == hardwareType.Id)
-                .Include(i => i.Inventory.Owner)
-                .ToList();
+            viewModel.Hardwares = db.Hardwares.Where(h => h.HardwareTypeId == hardwareType.Id)
+                    .Include(i => i.Inventory.Owner)
+                    .OrderBy(h => h.Inventory.Name)
+                    .ToPagedList(viewModel.Page, viewModel.PageSize);
 
-            var viewModel = new HardwareTypeHardwareList()
-            {
-                Hardwares = hardwares,
-                HardwareType = hardwareType
-            };
+            viewModel.HardwareType = hardwareType;
+
             return View(viewModel);
         }
 

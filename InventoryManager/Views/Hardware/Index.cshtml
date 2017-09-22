@@ -1,4 +1,5 @@
-﻿@model InventoryManager.ViewModel.HardwareList
+﻿@using PagedList.Mvc
+@model InventoryManager.ViewModel.HardwareList
 @{
     ViewBag.Title = "Hardware";
     Layout = "../Shared/_FormLayout.cshtml";
@@ -47,5 +48,12 @@
             </tr>
         }
     </table>
-
+     
+    @if (Model.Hardwares.PageSize < Model.Hardwares.TotalItemCount)
+    {
+        <div class="text-center">
+            @Html.PagedListPager(Model.Hardwares, page => Url.Action("Index",
+                new {page}))
+        </div>
+    }
 </div>

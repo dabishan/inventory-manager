@@ -1,4 +1,5 @@
 ﻿
+@using PagedList.Mvc
 @model InventoryManager.ViewModel.VendorTableView
 @{
     ViewBag.Title = "Vendors";
@@ -15,11 +16,11 @@
 <div class="list">
     <table class="table table-striped table-hover">
         <thead>
-            <tr>
-                <th class="col-sm-8">Name</th>
-                <th class="col-sm-2 text-center">Inventory Count</th>
-                <th class="col-sm-2 text-right">Action</th>
-            </tr>
+        <tr>
+            <th class="col-sm-8">Name</th>
+            <th class="col-sm-2 text-center">Inventory Count</th>
+            <th class="col-sm-2 text-right">Action</th>
+        </tr>
         </thead>
 
         @foreach (var vendorTable in Model.VendorTables)
@@ -35,4 +36,12 @@
             </tr>
         }
     </table>
+    
+    @if (Model.VendorTables.PageSize < Model.VendorTables.TotalItemCount)
+    {
+        <div class="text-center">
+            @Html.PagedListPager(Model.VendorTables, page => Url.Action("Index",
+                new {page}))
+        </div>
+    }
 </div>

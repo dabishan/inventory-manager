@@ -1,4 +1,5 @@
-﻿@model InventoryManager.ViewModel.HardwareTypeHardwareList
+﻿@using PagedList.Mvc
+@model InventoryManager.ViewModel.HardwareTypeHardwareList
 @{
     ViewBag.Title = Model.HardwareType.Name;
 
@@ -28,37 +29,45 @@
     {
         <table class="table table-striped table-hover">
             <thead>
-                <tr>
-                    <th width="25%">Name</th>
-                    <th class="col-sm-2 text-center">Status</th>
-                    <th class="col-sm-2">Assigned to</th>
-                    <th class="col-sm-1 text-right">Action</th>
-                </tr>
+            <tr>
+                <th width="25%">Name</th>
+                <th class="col-sm-2 text-center">Status</th>
+                <th class="col-sm-2">Assigned to</th>
+                <th class="col-sm-1 text-right">Action</th>
+            </tr>
             </thead>
             <tbody>
-                @foreach (var hardware in Model.Hardwares)
-                {
-                    <tr>
-                        <td>
-                            @hardware.Inventory.Name
-                        </td>
-                        <td class="text-center">
-                            <span class="label label-@hardware.Inventory.Status">@hardware.Inventory.Status</span>
-                        </td>
-                        <td>
-                            <a href="@Url.Action("Show", "Customer", new {Id = @hardware.Inventory.Owner.Id})">
-                                <i class="fa fa-user"></i> @hardware.Inventory.Owner.Name
-                            </a>
-                        </td>
-                        <td class="text-right">
-                            <a href="@Url.Action("Show", "Hardware", new {Id = @hardware.Id})" class="mini-btn">
-                                <i class="fa fa-eye"></i>
-                            </a>
-                        </td>
-                    </tr>
-                }
+            @foreach (var hardware in Model.Hardwares)
+            {
+                <tr>
+                    <td>
+                        @hardware.Inventory.Name
+                    </td>
+                    <td class="text-center">
+                        <span class="label label-@hardware.Inventory.Status">@hardware.Inventory.Status</span>
+                    </td>
+                    <td>
+                        <a href="@Url.Action("Show", "Customer", new {Id = @hardware.Inventory.Owner.Id})">
+                            <i class="fa fa-user"></i> @hardware.Inventory.Owner.Name
+                        </a>
+                    </td>
+                    <td class="text-right">
+                        <a href="@Url.Action("Show", "Hardware", new {Id = @hardware.Id})" class="mini-btn">
+                            <i class="fa fa-eye"></i>
+                        </a>
+                    </td>
+                </tr>
+            }
             </tbody>
         </table>
+
+        if (Model.Hardwares.PageSize < Model.Hardwares.TotalItemCount)
+         {
+             <div class="text-center">
+                 @Html.PagedListPager(Model.Hardwares, page => Url.Action("ListInventories", "HardwareType",
+                     new {page}))
+             </div>
+         }
     }
     else
     {

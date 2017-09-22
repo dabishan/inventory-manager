@@ -1,28 +1,29 @@
 ﻿using System;
+using System.Configuration;
 using System.Data.Entity;
-using System.Data.Entity.Validation;
-using System.Diagnostics;
 using System.Linq;
 using System.Net;
 using System.Web.Mvc;
 using InventoryManager.Models;
 using InventoryManager.ViewModel;
+using PagedList;
 
 namespace InventoryManager.Controllers
 {
     public class HardwareController : Controller
     {
         private InventoryContext db = new InventoryContext();
+        
 
         // GET: Inventory
-        public ActionResult Index()
+        public ActionResult Index(HardwareList viewModel)
         {
-            var viewModel = new HardwareList();
-
             viewModel.Hardwares = db.Hardwares
                 .Include(h => h.Inventory)
-                .Include(h => h.Inventory.Maker).ToList();
-
+                .Include(h => h.Inventory.Maker)
+                .OrderBy(i => i.Inventory.Name)
+                .ToPagedList(viewModel.Page, viewModel.PageSize);
+            
             return View(viewModel);
         }
 

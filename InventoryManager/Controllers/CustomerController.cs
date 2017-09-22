@@ -5,6 +5,7 @@ using System.Net;
 using System.Web.Mvc;
 using InventoryManager.Models;
 using InventoryManager.ViewModel;
+using PagedList;
 
 namespace InventoryManager.Controllers
 {
@@ -13,17 +14,17 @@ namespace InventoryManager.Controllers
         private InventoryContext db = new InventoryContext();
 
         // GET: Owner
-        public ActionResult Index()
+        public ActionResult Index(CustomerListView viewModel)
         {
-            var viewModel = new CustomerListView();
-
             viewModel.CustomerLists = db.Customers
                 .Select(c => new CustomerList()
                 {
                     Customer = c,
-                    Owner =  c.Owner,
+                    Owner = c.Owner,
                     Count = c.Owner.Inventories.Count
-                }).ToList();
+                })
+                .OrderBy(c => c.Owner.Name)
+                .ToPagedList(viewModel.Page, viewModel.PageSize);
 
             return View(viewModel);
         }
@@ -129,18 +130,24 @@ namespace InventoryManager.Controllers
             return View(viewModel);
         }
 
-        public ActionResult ListInventories(int? Id)
+        public ActionResult ListInventories(int? Id, CustomerHardwareView viewModel)
         {
             if (Id == null) return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
 
             var customer = db.Customers
-                .Include(c => c.Owner.Inventories)
+                .Include(i => i.Owner)
                 .SingleOrDefault(c => c.Id == Id);
 
-            if (customer == null) return new HttpNotFoundResult();
+            if (customer == null) return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
 
-            
-            return View(customer);
+            viewModel.Customer = customer;
+
+            viewModel.Inventories = db.Inventories
+                .Where(i => i.Owner.Id == customer.Owner.Id)
+                .OrderBy(i => i.Name)
+                .ToPagedList(viewModel.Page, viewModel.PageSize);
+
+            return View(viewModel);
         }
 
         protected override void Dispose(bool disposing)

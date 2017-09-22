@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using InventoryManager.Models;
+using PagedList;
 
 namespace InventoryManager.ViewModel
 {
@@ -76,9 +77,16 @@ namespace InventoryManager.ViewModel
         public Owner Owner { get; set; }
         public int Count { get; set; }
     }
-    public class CustomerListView
+
+    public class CustomerListView : ViewModel
     {
-        public ICollection<CustomerList> CustomerLists { get; set; }
+        public IPagedList<CustomerList> CustomerLists { get; set; }
+    }
+
+    public class CustomerHardwareView : ViewModel
+    {
+        public Customer Customer { get; set; }
+        public IPagedList<Inventory> Inventories { get; set; }
     }
 
     public class VendorTable
@@ -87,15 +95,15 @@ namespace InventoryManager.ViewModel
         public int Count { get; set; }
     }
 
-    public class VendorTableView
+    public class VendorTableView : ViewModel
     {
-        public IList<VendorTable> VendorTables { get; set; }
+        public IPagedList<VendorTable> VendorTables { get; set; }
     }
 
-    public class VendorInventoryList
+    public class VendorInventoryList : ViewModel
     {
         public Vendor Vendor;
-        public ICollection<Inventory> Inventories { get; set; }
+        public IPagedList<Inventory> Inventories { get; set; }
     }
 
     public class MakerTable
@@ -104,14 +112,14 @@ namespace InventoryManager.ViewModel
         public int Count { get; set; }
     }
 
-    public class MakerTableView
+    public class MakerTableView : ViewModel
     {
-        public IList<MakerTable> MakerTables { get; set; }
+        public IPagedList<MakerTable> MakerTables { get; set; }
     }
 
-    public class MakerInventoryList
+    public class MakerInventoryList : ViewModel
     {
         public Maker Maker;
-        public ICollection<Inventory> Inventories { get; set; }
+        public IPagedList<Inventory> Inventories { get; set; }
     }
 }

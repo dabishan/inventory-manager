@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using InventoryManager.Models;
+using PagedList;
 
 namespace InventoryManager.ViewModel
 {
@@ -67,7 +68,7 @@ namespace InventoryManager.ViewModel
 
     public class HardwareList : ViewModel
     {
-        public IList<Hardware> Hardwares;
+        public IPagedList<Hardware> Hardwares;
     }
 
     public class HardwareView : ViewModel
@@ -81,14 +82,14 @@ namespace InventoryManager.ViewModel
         public int Count { get; set; }
     }
 
-    public class HardwareTypeTableView
+    public class HardwareTypeTableView : ViewModel
     {
-        public IList<HardwareTypeTable> HardwareTypeTables { get; set; }
+        public IPagedList<HardwareTypeTable> HardwareTypeTables { get; set; }
     }
 
-    public class HardwareTypeHardwareList
+    public class HardwareTypeHardwareList :ViewModel
     {
         public HardwareType HardwareType;
-        public ICollection<Hardware> Hardwares { get; set; }
+        public IPagedList<Hardware> Hardwares { get; set; }
     }
 }

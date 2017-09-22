@@ -7,6 +7,7 @@ using System.Web;
 using System.Web.Mvc;
 using InventoryManager.Models;
 using InventoryManager.ViewModel;
+using PagedList;
 
 namespace InventoryManager.Controllers
 {
@@ -14,24 +15,22 @@ namespace InventoryManager.Controllers
     {
         private InventoryContext db = new InventoryContext();
         // GET: HardwareType
-        public ActionResult Index()
+        public ActionResult Index(VendorTableView viewModel)
         {
-            var vendors = db.Vendors
+
+            viewModel.VendorTables = db.Vendors
                 .Select(h => new VendorTable()
                 {
                     Vendor = h,
                     Count = h.Inventories.Count
-                });
-
-            var viewModel = new VendorTableView()
-            {
-                VendorTables = vendors.ToList()
-            };
+                })
+                .OrderBy(v => v.Vendor.Name)
+                .ToPagedList(viewModel.Page, viewModel.PageSize);
             
             return View(viewModel);
         }
 
-        public ActionResult ListInventories(int? Id)
+        public ActionResult ListInventories(int? Id, VendorInventoryList viewModel)
         {
             if (Id == null) return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
 
@@ -39,15 +38,13 @@ namespace InventoryManager.Controllers
 
             if(vendor == null) return new HttpNotFoundResult();
 
-            var inventories = db.Inventories.Where(h => h.VendorId == vendor.Id)
-                .Include(i => i.Owner)
-                .ToList();
+            viewModel.Vendor = vendor;
 
-            var viewModel = new VendorInventoryList()
-            {
-                Inventories = inventories,
-                Vendor = vendor
-            };
+            viewModel.Inventories = db.Inventories.Where(h => h.VendorId == vendor.Id)
+                .Include(i => i.Owner)
+                .OrderBy(v => v.Name)
+                .ToPagedList(viewModel.Page, viewModel.PageSize);
+
             return View(viewModel);
         }
 
