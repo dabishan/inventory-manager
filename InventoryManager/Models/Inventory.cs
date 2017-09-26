@@ -31,6 +31,8 @@ namespace InventoryManager.Models
 
         public DateTime? PurchaseDate { get; set; }
 
+        public ICollection<History> Histories { get; set; }
+
         public Maker Maker { get; set; }
         public int MakerId { get; set; }
 
@@ -76,7 +78,9 @@ namespace InventoryManager.Models
                 .WithMany(i => i.Inventories)
                 .HasForeignKey(i => i.VendorId);
 
-
+            HasMany(i => i.Histories)
+                .WithRequired(i => i.Inventory)
+                .HasForeignKey(i => i.InventoryId);
         }
     }
 

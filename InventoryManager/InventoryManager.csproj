@@ -187,6 +187,10 @@
     <Compile Include="Migrations\201709161749463_MoveNameFromCustomerToOwnerTable.Designer.cs">
       <DependentUpon>201709161749463_MoveNameFromCustomerToOwnerTable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201709260402276_AddHistoryTableToDatabase.cs" />
+    <Compile Include="Migrations\201709260402276_AddHistoryTableToDatabase.Designer.cs">
+      <DependentUpon>201709260402276_AddHistoryTableToDatabase.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\History.cs" />
     <Compile Include="Models\Inventory.cs" />
@@ -314,6 +318,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201709161749463_MoveNameFromCustomerToOwnerTable.resx">
       <DependentUpon>201709161749463_MoveNameFromCustomerToOwnerTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709260402276_AddHistoryTableToDatabase.resx">
+      <DependentUpon>201709260402276_AddHistoryTableToDatabase.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
