@@ -56,6 +56,7 @@ namespace InventoryManager.Controllers
                 return View(h);
             }
 
+            UpdateHistory(hardware, h);
             MapHardware(hardware, h);
             hardware.Inventory.CreatedOn = DateTime.Now;
 
@@ -105,6 +106,23 @@ namespace InventoryManager.Controllers
             hardwareToDisplay.WarrentyExpiration = hardware.WarrentyExpiration;
         }
 
+        public void UpdateHistory(Hardware hardware, HardwareData data)
+        {
+            if (data.Status != hardware.Inventory.Status
+                || data.OwnerId != hardware.Inventory.OwnerId)
+            {
+                var history = new History()
+                {
+                    AssignedOn = DateTime.Now,
+                    AssignedToId = data.OwnerId,
+                    InventoryId = hardware.Inventory.Id,
+                    StatusAssigned = data.Status,
+                    AssignedById = 1 // TODO change when Authentication is working
+                };
+
+                db.Histories.Add(history);
+            }
+        }
         public ActionResult Edit(int? Id)
         {
             if (Id == null ) return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -148,6 +166,7 @@ namespace InventoryManager.Controllers
                 return View(h);
             }
 
+            UpdateHistory(hardware, h);
             MapHardware(hardware, h);
             db.SaveChanges();
 

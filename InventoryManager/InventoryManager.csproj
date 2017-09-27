@@ -158,6 +158,7 @@
     <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\HardwareController.cs" />
     <Compile Include="Controllers\HardwareTypeController.cs" />
+    <Compile Include="Controllers\HistoryController.cs" />
     <Compile Include="Controllers\MakerController.cs" />
     <Compile Include="Controllers\SearchController.cs" />
     <Compile Include="Controllers\VendorController.cs" />
@@ -191,6 +192,10 @@
     <Compile Include="Migrations\201709260402276_AddHistoryTableToDatabase.Designer.cs">
       <DependentUpon>201709260402276_AddHistoryTableToDatabase.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201709270227536_AddForeignKeysAndRelationOfHistoryWithOwnerAndUser.cs" />
+    <Compile Include="Migrations\201709270227536_AddForeignKeysAndRelationOfHistoryWithOwnerAndUser.Designer.cs">
+      <DependentUpon>201709270227536_AddForeignKeysAndRelationOfHistoryWithOwnerAndUser.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\History.cs" />
     <Compile Include="Models\Inventory.cs" />
@@ -198,6 +203,7 @@
     <Compile Include="Models\Owner.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModel\History.cs" />
     <Compile Include="ViewModel\Inventory.cs" />
     <Compile Include="ViewModel\Owner.cs" />
     <Compile Include="ViewModel\Search.cs" />
@@ -286,6 +292,7 @@
     <Content Include="Views\Maker\ListInventories.cshtml" />
     <Content Include="Views\Shared\_sidebar.cshtml" />
     <Content Include="Views\Search\Index.cshtml" />
+    <Content Include="Views\History\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -321,6 +328,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201709260402276_AddHistoryTableToDatabase.resx">
       <DependentUpon>201709260402276_AddHistoryTableToDatabase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709270227536_AddForeignKeysAndRelationOfHistoryWithOwnerAndUser.resx">
+      <DependentUpon>201709270227536_AddForeignKeysAndRelationOfHistoryWithOwnerAndUser.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

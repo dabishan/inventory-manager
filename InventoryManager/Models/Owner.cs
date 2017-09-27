@@ -22,6 +22,8 @@ namespace InventoryManager.Models
         public DateTime CreatedOn { get; set; }
         public DateTime ModifiedOn { get; set; }
 
+        public ICollection<History> Histories { get; set; }
+
         public ICollection<Inventory> Inventories { get; set; }
 
         public class OwnerConfig : EntityTypeConfiguration<Owner>
@@ -31,6 +33,11 @@ namespace InventoryManager.Models
                 HasMany(o => o.Inventories)
                     .WithRequired(o => o.Owner)
                     .HasForeignKey(o => o.OwnerId);
+
+                HasMany(o => o.Histories)
+                    .WithRequired(o => o.AssignedTo)
+                    .HasForeignKey(o => o.AssignedToId)
+                    .WillCascadeOnDelete(false);
             }
         }
     }

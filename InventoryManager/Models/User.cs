@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data.Entity.ModelConfiguration;
 
 namespace InventoryManager.Models
@@ -13,6 +14,8 @@ namespace InventoryManager.Models
         public string Password { get; set; }
         public string PassCode { get; set; }
 
+        public ICollection<History> Histories { get; set; }
+
         public DateTime CreateDate { get; set; }
         public DateTime ModifiedDate { get; set; }
     }
@@ -21,6 +24,11 @@ namespace InventoryManager.Models
     {
         public UserConfig()
         {
+            HasMany(u => u.Histories)
+                .WithRequired(u => u.AssignedBy)
+                .HasForeignKey(u => u.AssignedById)
+                .WillCascadeOnDelete(false);
+
             Property(u => u.FirstName)
                 .HasMaxLength(42)
                 .IsRequired();

@@ -11,8 +11,13 @@ namespace InventoryManager.Models
         public Inventory Inventory { get; set; }
 
         public DateTime AssignedOn { get; set; }
+
+        public int AssignedById { get; set; }
         public User AssignedBy { get; set; }
+
+        public int AssignedToId { get; set; }
         public Owner AssignedTo { get; set; }
+
         public InventoryStatus StatusAssigned { get; set; }
 
     }

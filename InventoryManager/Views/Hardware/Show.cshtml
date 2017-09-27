@@ -19,6 +19,11 @@
 @section MenuControls {
     <ul>
         <li>
+            <a href="@Url.Action("Index", "History", new {Id = Model.Hardware.Inventory.Id})">
+                <i class="fa fa-list"></i> View History
+            </a>
+        </li>
+        <li>
             <a href="@Url.Action("Delete", "Hardware", new {Id = Model.Hardware.Id})">
                 <i class="fa fa-trash"></i> Delete
             </a>
