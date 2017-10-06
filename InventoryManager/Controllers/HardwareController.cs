@@ -14,7 +14,6 @@ namespace InventoryManager.Controllers
     {
         private InventoryContext db = new InventoryContext();
         
-
         // GET: Inventory
         public ActionResult Index(HardwareList viewModel)
         {
@@ -186,6 +185,7 @@ namespace InventoryManager.Controllers
                 .Include(h => h.Inventory.Vendor)
                 .Include(h => h.HardwareType)
                 .Include(h => h.Inventory.Owner)
+                .Include(h => h.Inventory.Documents)
                 .SingleOrDefault(h => h.Id == Id);
 
             if (hardware == null) return new HttpNotFoundResult();

@@ -1,0 +1,142 @@
+﻿@using System.Configuration
+@model InventoryManager.ViewModel.HardwareView
+    
+@{
+    var baseUrl = Request.Url.Scheme + "://" + Request.Url.Authority + 
+                  Request.ApplicationPath.TrimEnd('/') + "/";
+}
+
+<div class="section">
+    <div class="section-header">
+        <h3>Documents</h3>
+        <div class="section-controls">
+            <a href="#" data-toggle="modal" data-target="#upload-box" role="button">
+                <span class="fa fa-plus"></span> Add Document
+            </a>
+        </div>
+    </div>
+    <div class="separator"></div>
+</div>
+
+<div id="image-box" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            
+            <div class="modal-body">
+                <img class="img img-responsive" id="image-display"/>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="delete-box"class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close"
+                        data-dismiss="modal">
+                    <i class="fa fa-times"></i>
+                </button>
+                <h4>Delete Image</h4>
+            </div>
+            <div class="modal-body">
+                <div class="msg"></div>
+                @using (Html.BeginForm(null, null, FormMethod.Post, new {@id = "form-delete-document"}))
+                {
+                    @Html.AntiForgeryToken();
+                    <input type="hidden" id="image-id" name="ImageId"/>
+                }
+                <p>Are you sure you want to delete the Image?</p>
+                <div class="modal-footer text-center">
+                    <button class="btn btn-primary" id="btn-delete-document">
+                        <i class="fa fa-trash"></i> Delete
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="upload-box" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                    
+                <button type="button" class="close"
+                        data-dismiss="modal"><i class="fa fa-times"></i></button>
+                <h4>Upload Image</h4>
+            </div>
+            <div class="modal-body">
+                <div class="msg"></div>
+                
+                
+                @using (Html.BeginForm(null, null, FormMethod.Post, htmlAttributes: new {@id = "form-upload", @enctype="multipart/form-data"}))
+                {
+                    @Html.AntiForgeryToken()
+                    <label for="file-name" class="control-label">Document Name</label>
+                    <div class="form-group">
+                        <input class="form-control" id="file-name" name="Name" placeholder="Document Name"/>
+                    </div>
+                    <p>Please Select File To Upload</p>
+                    <div class="form-group">
+                        <input class="file" name="File" type="file" id="File"/>
+                    </div>
+                    
+                }
+                <div class="modal-footer text-center">
+                    <button class="btn btn-primary" id="btn-upload">
+                        <i class="fa fa-cloud-upload"></i> Upload
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="list">
+    @if (Model.Hardware.Inventory.Documents.Count > 0)
+    {
+        <table class="table table-striped table-hover">
+            <thead>
+            <tr>
+                <th width="50%">Document Name</th>
+                <th class="col-sm-4">Uploaded On</th>
+                <th class="col-sm-2 text-right">Action</th>
+            </tr>
+            </thead>
+            <tbody>
+            @foreach (var document in Model.Hardware.Inventory.Documents)
+            {
+                <tr>
+                    <td>
+                        <a href="#">@document.Name</a>
+                    </td>
+                    <td>
+                        <a href="#">@document.UploadedOn</a>
+                    </td>
+                    <td class="text-right">
+                        @if (document.FileType.Contains("image/"))
+                        {
+                            <a href="#" data-image-url="@String.Concat(baseUrl, "Images/", document.Path)"
+                               data-toggle="modal" data-target="#image-box" role="button" class="mini-btn img-display">
+                                <span class="fa fa-eye"></span>
+                            </a>
+                        }
+                        <a href="@Url.Action("Download", "Document", new {Id = document.Id})" class="mini-btn">
+                            <span class="fa fa-download"></span>
+                        </a>
+                        <a href="#" data-document-id="@document.Id"
+                           data-toggle="modal" data-target="#delete-box" role="button" class="mini-btn img-delete">
+                            <span class="fa fa-trash"></span>
+                        </a>
+                    </td>
+                </tr>
+            }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <div class="text-center">
+            No Documents Uploaded
+        </div>
+    }
+</div>

@@ -6,6 +6,7 @@ namespace InventoryManager.Models
     public class InventoryContext : DbContext
     {
         public DbSet<Inventory> Inventories { get; set; }
+        public DbSet<Document> Documents { get; set; }
         public DbSet<Hardware> Hardwares { get; set; }
         public DbSet<Software> Softwares { get; set; }
         public DbSet<Maker> Makers { get; set; }

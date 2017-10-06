@@ -33,6 +33,8 @@ namespace InventoryManager.Models
 
         public ICollection<History> Histories { get; set; }
 
+        public ICollection<Document> Documents { get; set; }
+
         public Maker Maker { get; set; }
         public int MakerId { get; set; }
 
@@ -82,6 +84,22 @@ namespace InventoryManager.Models
                 .WithRequired(i => i.Inventory)
                 .HasForeignKey(i => i.InventoryId);
         }
+    }
+
+    public class Document
+    {
+        public int Id { get; set; }
+
+        public DateTime UploadedOn { get; set; }
+
+        public string Name { get; set; }
+
+        public string FileType { get; set; }
+
+        public string Path { get; set; }
+        
+        public int InventoryId { get; set; }
+        public Inventory Inventory { get; set; }
     }
 
     public class Hardware

@@ -1,4 +1,5 @@
-﻿@model InventoryManager.ViewModel.HardwareView
+﻿@using JsonResult = InventoryManager.ViewModel.JsonResult
+@model InventoryManager.ViewModel.HardwareView
 @{
     ViewBag.Title = Model.Hardware.Inventory.Name;
 
@@ -34,9 +35,103 @@
             </a>
         </li>
     </ul>
-
-
-    
 }
 
+@Html.AntiForgeryToken()
+
 @{Html.RenderPartial("_form_view");}
+
+@{Html.RenderPartial("__form_images");}
+
+@section scripts{
+    <script>
+        $(document).ready(function () {
+
+            $(".img-display").click(function () {
+                $("#image-display").attr("src", $(this).attr("data-image-url"));
+            });
+
+            $(".img-delete").click(function() {
+                $("input#image-id").val($(this).attr("data-document-id"));
+            });
+
+            $("#btn-delete-document").click(function () {
+                var message = "";
+
+                var data = new FormData($("#form-delete-document")[0]);
+                $.ajax({
+                    url: "@Url.Action("Delete", "Document")",
+                    type: "POST",
+                    data: data,
+                    processData: false,
+                    contentType: false,
+                    success: function (result) {
+                        if (result["ResponseStatus"] === 1) {
+                            location.reload();
+                        }
+                    },
+                    error: function() {
+                        message = '<div class="alert alert-danger">Cannot Delete Image</div>';
+                        $("#delete-box .msg").html(message);
+                    }
+                });
+            });
+
+            $("#btn-upload").click(function () {
+                $("#upload-box .msg").html("");
+                var message = "";
+
+                if ($("#file-name").val() === "") {
+                    message = '<div class="alert alert-danger">Please Enter a Document Name</div>';
+                    $("#upload-box .msg").html(message);
+                    return false;
+                }
+
+                if ($("#file-input").val() !== "") {
+
+                    var data = new FormData($("#form-upload")[0]);
+                    
+                    $.ajax({
+                        url: "@Url.Action("Add", "Document", new {InventoryId =  @Model.Hardware.Inventory.Id})",
+                        type: 'POST',
+                        data: data,
+                        contentType: false,
+                        processData: false,
+                        success: function (result) {
+                            if (result.hasOwnProperty('ResponseStatus')) {
+                                switch (result['ResponseStatus']) {
+                                case 0:
+                                    message = '<div class="alert alert-danger">' + result['Message'] + '</div>';
+                                    break;
+
+                                case 1:
+                                    message = '<div class="alert alert-success">' + result['Message'] + '</div>';
+                                    location.reload();
+                                    break;
+
+                                default:
+                                    message = '<div class="alert alert-danger">Cannot Upload File</div>';
+                                    break;
+                                }
+                            } else {
+                                message = '<div class="alert alert-danger">Cannot Upload File</div>';
+                            }
+                        },
+                        error: function(){
+                            message = '<div class="alert alert-danger">Cannot Connect to Server</div>';
+                        },
+                        complete: function() {
+                            $("#upload-box .msg").html(message);
+                        }
+                    });
+
+                } else {
+                    message = '<div class="alert alert-danger">Please Select File to Upload</div>';
+                    $("#upload-box .msg").html(message);
+                }
+                
+            });
+            
+        })
+    </script>
+}

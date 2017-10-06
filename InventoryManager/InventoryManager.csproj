@@ -159,6 +159,7 @@
     <Compile Include="Controllers\HardwareController.cs" />
     <Compile Include="Controllers\HardwareTypeController.cs" />
     <Compile Include="Controllers\HistoryController.cs" />
+    <Compile Include="Controllers\ImageController.cs" />
     <Compile Include="Controllers\MakerController.cs" />
     <Compile Include="Controllers\SearchController.cs" />
     <Compile Include="Controllers\VendorController.cs" />
@@ -196,6 +197,10 @@
     <Compile Include="Migrations\201709270227536_AddForeignKeysAndRelationOfHistoryWithOwnerAndUser.Designer.cs">
       <DependentUpon>201709270227536_AddForeignKeysAndRelationOfHistoryWithOwnerAndUser.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201710051932154_AddDocumentTablesAndRelations.cs" />
+    <Compile Include="Migrations\201710051932154_AddDocumentTablesAndRelations.Designer.cs">
+      <DependentUpon>201710051932154_AddDocumentTablesAndRelations.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\History.cs" />
     <Compile Include="Models\Inventory.cs" />
@@ -215,6 +220,9 @@
     <Content Include="Content\app.styles.css" />
     <Content Include="Content\img\select-down-arrow.svg" />
     <Content Include="Content\PagedList.css" />
+    <Content Include="Images\6096964_logo-horizontal.png" />
+    <Content Include="Images\75793906_logo-horizontal.png" />
+    <Content Include="Images\9789403_logo-horizontal.png" />
     <Content Include="Src\css\bootstrap.min.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -230,6 +238,7 @@
     <Content Include="Src\js\form.js" />
     <Content Include="webpack.config.js" />
     <Content Include="package.json" />
+    <Content Include="Images\37404510_invoice-06-21-2017.pdf" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -241,7 +250,9 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -293,9 +304,12 @@
     <Content Include="Views\Shared\_sidebar.cshtml" />
     <Content Include="Views\Search\Index.cshtml" />
     <Content Include="Views\History\Index.cshtml" />
+    <Content Include="Views\Hardware\__form_images.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Images\Thumbnails\" />
+    <Folder Include="Views\Image\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -331,6 +345,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201709270227536_AddForeignKeysAndRelationOfHistoryWithOwnerAndUser.resx">
       <DependentUpon>201709270227536_AddForeignKeysAndRelationOfHistoryWithOwnerAndUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710051932154_AddDocumentTablesAndRelations.resx">
+      <DependentUpon>201710051932154_AddDocumentTablesAndRelations.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
