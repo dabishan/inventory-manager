@@ -64,6 +64,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.DirectoryServices.Protocols" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
@@ -154,6 +155,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ContactController.cs" />
     <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\HardwareController.cs" />
@@ -283,7 +285,7 @@
     <Content Include="Views\Contact\__form_add_contact.cshtml" />
     <Content Include="Views\Contact\Add.cshtml" />
     <Content Include="Views\Contact\Edit.cshtml" />
-    <Content Include="Views\User\Login.cshtml" />
+    <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\_ViewLogin.cshtml" />
     <Content Include="Views\Customer\Add.cshtml" />
     <Content Include="Views\Customer\Edit.cshtml" />
@@ -292,7 +294,6 @@
     <Content Include="Views\Customer\__form_locations.cshtml" />
     <Content Include="Views\Customer\Show.cshtml" />
     <Content Include="Views\Customer\_form_view.cshtml" />
-    <Content Include="Views\Shared\_FormLogin.cshtml" />
     <Content Include="Views\Customer\ListInventories.cshtml" />
     <Content Include="Views\Customer\Index.cshtml" />
     <Content Include="Views\HardwareType\Index.cshtml" />
@@ -305,11 +306,13 @@
     <Content Include="Views\Search\Index.cshtml" />
     <Content Include="Views\History\Index.cshtml" />
     <Content Include="Views\Hardware\__form_images.cshtml" />
+    <Content Include="Views\Shared\_LoginLayout.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Images\Thumbnails\" />
     <Folder Include="Views\Image\" />
+    <Folder Include="Views\User\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
