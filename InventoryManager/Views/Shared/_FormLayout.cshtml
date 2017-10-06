@@ -64,6 +64,14 @@
                     $("#wrapper").toggleClass("toggled");
                 });
             });
+
+            $(document).ready(function () {
+                $("#search").keypress(function (e) {
+                    if (e.which === 13) {
+                        $('#form-search').submit();
+                    }
+                });
+            });
         </script>
     </environment>
 
