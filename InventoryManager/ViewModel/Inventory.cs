@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Web;
 using InventoryManager.Models;
 using PagedList;
 
@@ -91,5 +92,17 @@ namespace InventoryManager.ViewModel
     {
         public HardwareType HardwareType;
         public IPagedList<Hardware> Hardwares { get; set; }
+    }
+
+    public class DocumentJson : JsonResult
+    {
+        public HttpPostedFileBase File { get; set; }
+        public string Name { get; set; }
+    }
+
+    public class DocumentListJson : JsonResult
+    {
+        public int InventoryId { get; set; }
+        public ICollection<Document> Documents { get; set; }
     }
 }

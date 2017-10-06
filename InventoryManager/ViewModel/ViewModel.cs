@@ -14,4 +14,12 @@ namespace InventoryManager.ViewModel
             PageSize = 2;
         }
     }
+
+    public class JsonResult : ViewModel
+    {
+        public enum JsonResponse { Failed = 0, Successful = 1}
+        public JsonResponse ResponseStatus { get; set; }
+
+        public string Message { get; set; }
+    }
 }
