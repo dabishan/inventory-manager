@@ -1,3 +1,8 @@
+using System.Linq;
+using InventoryManager.Models;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
+
 namespace InventoryManager.Migrations
 {
     using System.Data.Entity.Migrations;

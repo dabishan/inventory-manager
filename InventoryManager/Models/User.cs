@@ -1,9 +1,25 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity.ModelConfiguration;
+using System.Security.Claims;
+using System.Threading.Tasks;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace InventoryManager.Models
 {
+
+    public class ApplicationUser : IdentityUser
+    {
+        public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
+        {
+            // Note the authenticationType must match the one defined in CookieAuthenticationOptions.AuthenticationType
+            var userIdentity = await manager.CreateIdentityAsync(this, DefaultAuthenticationTypes.ApplicationCookie);
+            // Add custom user claims here
+            return userIdentity;
+        }
+    }
+/*
     public class User
     {
         public int Id { get; set; }
@@ -24,10 +40,10 @@ namespace InventoryManager.Models
     {
         public UserConfig()
         {
-            HasMany(u => u.Histories)
+/*            HasMany(u => u.Histories)
                 .WithRequired(u => u.AssignedBy)
                 .HasForeignKey(u => u.AssignedById)
-                .WillCascadeOnDelete(false);
+                .WillCascadeOnDelete(false);#1#
 
             Property(u => u.FirstName)
                 .HasMaxLength(42)
@@ -53,5 +69,5 @@ namespace InventoryManager.Models
                 .HasMaxLength(48);
 
         }
-    }
+    }*/
 }

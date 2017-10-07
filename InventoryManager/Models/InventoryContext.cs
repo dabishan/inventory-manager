@@ -1,9 +1,10 @@
 ﻿using System.Data.Entity;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 
 namespace InventoryManager.Models
 {
-    public class InventoryContext : DbContext
+    public class InventoryContext : IdentityDbContext<ApplicationUser>
     {
         public DbSet<Inventory> Inventories { get; set; }
         public DbSet<Document> Documents { get; set; }
@@ -23,6 +24,11 @@ namespace InventoryManager.Models
         public InventoryContext() : base("name=InventoryManagerContext")
         {
             this.Configuration.LazyLoadingEnabled = false;
+        }
+
+        public static InventoryContext Create()
+        {
+            return new InventoryContext();
         }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
