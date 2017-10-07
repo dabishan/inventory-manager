@@ -116,7 +116,7 @@ namespace InventoryManager.Controllers
                     AssignedToId = data.OwnerId,
                     InventoryId = hardware.Inventory.Id,
                     StatusAssigned = data.Status,
-                    /*AssignedById = 1 // TODO change when Authentication is working*/
+                    AssignedById = "asdfsdf" // TODO change when Authentication is working*/
                 };
 
                 db.Histories.Add(history);
