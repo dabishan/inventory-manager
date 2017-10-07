@@ -27,7 +27,7 @@ namespace InventoryManager.Controllers
             viewModel.Inventory = inventory;
 
             viewModel.Histories = db.Histories
-                /*.Include(i => i.AssignedBy)*/
+                .Include(i => i.AssignedBy)
                 .Include(i => i.AssignedTo)
                 .Where(i => i.InventoryId == Id)
                 .OrderByDescending(i => i.AssignedOn)

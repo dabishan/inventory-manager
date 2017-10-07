@@ -45,7 +45,7 @@ namespace InventoryManager.Models
     public class GbhContact
     {
         public int Id { get; set; }
-        /*public ApplicationUser User { get; set; }*/
+        public ApplicationUser User { get; set; }
 
         public Owner Owner { get; set; }
 

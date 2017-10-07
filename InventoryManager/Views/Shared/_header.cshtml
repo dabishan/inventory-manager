@@ -25,9 +25,9 @@
                         </div>
                     </div>
                 </li>
-                <li class="navbar-text">Hello, User</li>
+                <li class="navbar-text">Logged in as: @User.Identity.Name</li>
                 <li class="navbar-menu">
-                    <a href="#" class="logoff">
+                    <a href="@Url.Action("LogOut", "Account")" class="logoff">
                         <i class="fa fa-power-off"></i>
                     </a>
                 </li>

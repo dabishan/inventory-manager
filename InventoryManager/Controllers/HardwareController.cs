@@ -6,6 +6,7 @@ using System.Net;
 using System.Web.Mvc;
 using InventoryManager.Models;
 using InventoryManager.ViewModel;
+using Microsoft.AspNet.Identity;
 using PagedList;
 
 namespace InventoryManager.Controllers
@@ -116,7 +117,7 @@ namespace InventoryManager.Controllers
                     AssignedToId = data.OwnerId,
                     InventoryId = hardware.Inventory.Id,
                     StatusAssigned = data.Status,
-                    /*AssignedById = 1 // TODO change when Authentication is working*/
+                    AssignedById = User.Identity.GetUserId()
                 };
 
                 db.Histories.Add(history);
