@@ -2,7 +2,6 @@
 
 namespace InventoryManager.Controllers
 {
-    [Authorize]
     public class HomeController : Controller
     {
         public ActionResult Index()

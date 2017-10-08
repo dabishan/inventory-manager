@@ -8,9 +8,14 @@ using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace InventoryManager.Models
 {
-
     public class ApplicationUser : IdentityUser
     {
+        public const string ADMIN = "InventoryAdmin";
+        public const string MANAGER = "InventoryManager";
+        public const string CUSTOMER_MANAGER = "InventoryCustomerManager";
+        public const string AUDITOR = "InventoryAuditor";
+        public const string USER = "InventoryUser";
+
         public ICollection<History> Histories { get; set; }
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
