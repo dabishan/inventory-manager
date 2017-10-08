@@ -19,6 +19,7 @@ namespace InventoryManager.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
+        private InventoryContext db = new InventoryContext();
 
         public AccountController()
         {
@@ -65,8 +66,8 @@ namespace InventoryManager.Controllers
             }
             var connectionString = ConfigurationManager.AppSettings["LdapConnectionString"]; 
 
-            ;
             var groups = new List<string>();
+            string displayName;
             try
             {
                 using (var directoryEntry = new DirectoryEntry(connectionString, username, viewModel.Password))
@@ -75,6 +76,8 @@ namespace InventoryManager.Controllers
                     var result = search.FindOne();
 
                     var adUser = new DirectoryEntry(result.Path);
+                    displayName = adUser.Properties["displayName"].Value.ToString();
+
                     var obGroups = adUser.Invoke("Groups");
                     foreach (var ob in (IEnumerable) obGroups)
                     {
@@ -109,6 +112,21 @@ namespace InventoryManager.Controllers
             {
                 user = new ApplicationUser() {UserName = username, Email = username};
                 UserManager.Create(user);
+
+                var employee = new Employee()
+                {
+                    User = user,
+                    Owner = new Owner
+                    {
+                        CreatedOn = DateTime.Now,
+                        ModifiedOn = DateTime.Now,
+                        Name = displayName,
+                        OwnerType = OwnerType.GbhEmployee
+                    }
+                };
+
+                db.Employees.Add(employee);
+                db.SaveChanges();
             }
             else
             {
