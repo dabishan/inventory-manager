@@ -113,9 +113,10 @@ namespace InventoryManager.Controllers
                 user = new ApplicationUser() {UserName = username, Email = username};
                 UserManager.Create(user);
 
+                
                 var employee = new Employee()
                 {
-                    User = user,
+                    User = db.Users.Find(user.Id),
                     Owner = new Owner
                     {
                         CreatedOn = DateTime.Now,
@@ -147,12 +148,26 @@ namespace InventoryManager.Controllers
 
             foreach (var str in groupArr)
             {
-                if (str == "CN=" + ApplicationUser.ADMIN) roles.Add(ApplicationUser.ADMIN);
-                else if (str == "CN=" + ApplicationUser.MANAGER) roles.Add(ApplicationUser.MANAGER);
-                else if (str == "CN=" + ApplicationUser.CUSTOMER_MANAGER) roles.Add(ApplicationUser.CUSTOMER_MANAGER);
-                else if (str == "CN=" + ApplicationUser.AUDITOR) roles.Add(ApplicationUser.AUDITOR);
+                switch (str)
+                {
+                    case "CN=" + ApplicationUser.ADMIN:
+                        roles.Add(ApplicationUser.ADMIN);
+                        break;
+                    case "CN=" + ApplicationUser.MANAGER:
+                        roles.Add(ApplicationUser.MANAGER);
+                        break;
+                    case "CN=" + ApplicationUser.CUSTOMER_MANAGER:
+                        roles.Add(ApplicationUser.CUSTOMER_MANAGER);
+                        break;
+                    case "CN=" + ApplicationUser.AUDITOR:
+                        roles.Add(ApplicationUser.AUDITOR);
+                        break;
+                }
             }
-            UserManager.AddToRoles(userId, roles.ToArray());
+            if (roles.Count == 0) 
+                UserManager.AddToRole(userId, ApplicationUser.USER);
+            else
+                UserManager.AddToRoles(userId, roles.ToArray());
         }
 
         public ActionResult LogOut()

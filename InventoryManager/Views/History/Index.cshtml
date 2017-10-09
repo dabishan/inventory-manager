@@ -30,7 +30,7 @@
             <tr>
                 <th width="25%">Assigned By</th>
                 <th class="col-sm-2 text-center">Assigned To</th>
-                <th class="col-sm-2">Status</th>
+                <th class="col-sm-2 text-center">Status</th>
                 <th class="col-sm-1 text-right">Assigned Date</th>
             </tr>
             </thead>
@@ -39,16 +39,15 @@
             {
                 <tr>
                     <td>
-                        <a href="#">@history.AssignedBy.FirstName @history.AssignedBy.LastName</a>
-                    </td>
-                    <td>
+                        <a href="#">@history.AssignedBy.UserName</a>
+                    <td class="text-center">
                         <a href="#">@history.AssignedTo.Name</a>
                     </td>
                     <td class="text-center">
                         <span class="label label-@history.StatusAssigned">@history.StatusAssigned</span>
                     </td>
 
-                    <td>@history.AssignedOn</td>
+                    <td class="text-right">@history.AssignedOn</td>
                 </tr>
             }
             </tbody>

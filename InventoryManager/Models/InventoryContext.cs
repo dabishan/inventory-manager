@@ -16,7 +16,7 @@ namespace InventoryManager.Models
         public DbSet<SoftwareType> SoftwareTypes { get; set; }
         public DbSet<Owner> Owners { get; set; }
         public DbSet<Customer> Customers { get; set; }
-        public DbSet<GbhContact> GbhgContacts { get; set; }
+        public DbSet<Employee> Employees { get; set; }
         public DbSet<Location> Locations { get; set; }
         public DbSet<Contact> Contacts { get; set; }
         public DbSet<History> Histories { get; set; }

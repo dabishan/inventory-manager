@@ -245,6 +245,10 @@
     <Compile Include="Migrations\201710070222196_AddRelationsWithApplicationUserTable.Designer.cs">
       <DependentUpon>201710070222196_AddRelationsWithApplicationUserTable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201710082134003_RenameGbhContactToEmployee.cs" />
+    <Compile Include="Migrations\201710082134003_RenameGbhContactToEmployee.Designer.cs">
+      <DependentUpon>201710082134003_RenameGbhContactToEmployee.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\History.cs" />
     <Compile Include="Models\Inventory.cs" />
@@ -403,6 +407,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201710070222196_AddRelationsWithApplicationUserTable.resx">
       <DependentUpon>201710070222196_AddRelationsWithApplicationUserTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710082134003_RenameGbhContactToEmployee.resx">
+      <DependentUpon>201710082134003_RenameGbhContactToEmployee.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
