@@ -11,6 +11,7 @@ using PagedList;
 
 namespace InventoryManager.Controllers
 {
+    [Authorize(Roles = "InventoryCustomerManager, InventoryManager, InventoryAdmin")]
     public class HistoryController : Controller
     {
         private InventoryContext db = new InventoryContext();

@@ -1,31 +1,63 @@
-﻿@{
-    ViewBag.Title = "Home Page";
+﻿
+@using InventoryManager.Models
+@using PagedList.Mvc
+@model InventoryManager.ViewModel.MakerTableView
+@{
+    ViewBag.Title = "Makers";
+    Layout = "../Shared/_FormLayout.cshtml";
 }
 
-<div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
-</div>
 
-<div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
+<div class="container">
+    <div class="panel">
+        <div class="panel-header"><div class="panel-heading"><h3>Add Inventory</h3></div></div>
+        <div class="panel-body">
+            <a href="@Url.Action("Add", "Hardware")">
+                <i class="fa fa-plus"></i> Add Hardware
+            </a>
+            <a href="@Url.Action("Add", "Software")">
+                <i class="fa fa-plus"></i> Add Software
+            </a>
+        </div>
     </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
-    </div>
+
+    @if (User.IsInRole(ApplicationUser.ADMIN) || User.IsInRole(ApplicationUser.MANAGER))
+    {
+        <div class="panel">
+            <div class="panel-header"><div class="panel-heading"><h3>Employees</h3></div></div>
+            <div class="panel-body">
+                <a href="@Url.Action("Index", "Employee")"> 
+                    <i class="fa fa-eye"></i> View Employees
+                </a>
+            </div>
+        </div>
+    }
+
+    @if (User.IsInRole(ApplicationUser.ADMIN) || User.IsInRole(ApplicationUser.CUSTOMER_MANAGER))
+    {
+        <div class="panel">
+            <div class="panel-header"><div class="panel-heading"><h3>Customers</h3></div></div>
+            <div class="panel-body">
+                <a href="@Url.Action("Add", "Customer")">
+                    <i class="fa fa-plus"></i> Add Customer
+                </a>
+                <a href="@Url.Action("Index", "Customer")">
+                    <i class="fa fa-eye"></i> View Customers
+                </a>
+            </div>
+        </div>
+    }
+
+    @if (User.IsInRole(ApplicationUser.ADMIN) || User.IsInRole(ApplicationUser.AUDITOR))
+    {
+
+        <div class="panel">
+            <div class="panel-header"><div class="panel-heading"><h3>Customers</h3></div></div>
+            <div class="panel-body">
+                <a href="@Url.Action("Index", "Report")">
+                    <i class="fa fa-plus"></i> Generate Reports
+                </a>
+            </div>
+        </div>
+    }
 </div>

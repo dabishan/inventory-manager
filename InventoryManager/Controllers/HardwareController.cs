@@ -6,6 +6,7 @@ using System.Net;
 using System.Web.Mvc;
 using InventoryManager.Models;
 using InventoryManager.ViewModel;
+using Microsoft.AspNet.Identity;
 using PagedList;
 
 namespace InventoryManager.Controllers
@@ -43,6 +44,17 @@ namespace InventoryManager.Controllers
         public ActionResult Add(HardwareData h)
         {
             var hardware = new Hardware() { Inventory = new Inventory()};
+
+            if(User.IsInRole(ApplicationUser.USER))
+            {
+                var userId = User.Identity.GetUserId();
+                var employee = db.Employees
+                    .Include(e => e.Owner)
+                    .SingleOrDefault(e => e.User.Id == userId);
+                if(employee == null ) return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                h.OwnerId = employee.Owner.Id;
+                h.Status = InventoryStatus.Pending;
+            }
 
             if (!ModelState.IsValid)
             {
@@ -116,7 +128,7 @@ namespace InventoryManager.Controllers
                     AssignedToId = data.OwnerId,
                     InventoryId = hardware.Inventory.Id,
                     StatusAssigned = data.Status,
-                    AssignedById = 1 // TODO change when Authentication is working
+                    AssignedById = User.Identity.GetUserId()
                 };
 
                 db.Histories.Add(history);
@@ -132,6 +144,20 @@ namespace InventoryManager.Controllers
 
             if(hardware == null) return new HttpNotFoundResult();
 
+            var userId = User.Identity.GetUserId();
+            var employee = db.Employees
+                .Include(e => e.Owner)
+                .SingleOrDefault(i => i.User.Id == userId);
+            if (employee == null) return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+
+            if (User.IsInRole(ApplicationUser.USER))
+            {
+                if (hardware.Inventory.Status != InventoryStatus.Pending || hardware.Inventory.OwnerId != employee.Owner.Id)
+                {
+                    return new HttpUnauthorizedResult();
+                }
+            }
+            
             var viewModel = new HardwareData();
             
             PopulateHardware(hardware, viewModel);
@@ -153,6 +179,23 @@ namespace InventoryManager.Controllers
                 .SingleOrDefault(i => i.Id == h.Id);
             if (hardware == null) return new HttpNotFoundResult();
 
+            var userId = User.Identity.GetUserId();
+            var employee = db.Employees
+                .Include(e => e.Owner)
+                .SingleOrDefault(i => i.User.Id == userId);
+
+            if (employee == null) return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+
+            if (User.IsInRole(ApplicationUser.USER))
+            {
+                if (hardware.Inventory.Status != InventoryStatus.Pending || hardware.Inventory.OwnerId != employee.Owner.Id)
+                {
+                    return new HttpUnauthorizedResult();
+                }
+
+                h.Status = InventoryStatus.Pending;
+                h.OwnerId = employee.Owner.Id;
+            }
 
             if (!ModelState.IsValid)
             {
@@ -187,6 +230,16 @@ namespace InventoryManager.Controllers
                 .Include(h => h.Inventory.Owner)
                 .Include(h => h.Inventory.Documents)
                 .SingleOrDefault(h => h.Id == Id);
+
+            var userId = User.Identity.GetUserId();
+            var employee = db.Employees
+                .Include(e => e.Owner)
+                .SingleOrDefault(i => i.User.Id == userId);
+
+            if (User.IsInRole(ApplicationUser.USER) && hardware.Inventory.OwnerId != employee.Owner.Id)
+            {
+                return new HttpUnauthorizedResult();
+            }
 
             if (hardware == null) return new HttpNotFoundResult();
 

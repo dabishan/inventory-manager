@@ -6,6 +6,7 @@ using InventoryManager.ViewModel;
 
 namespace InventoryManager.Controllers
 {
+    [Authorize(Roles = "InventoryCustomerManager, InventoryAdmin")]
     public class ContactController : Controller
     {
         private InventoryContext db = new InventoryContext();

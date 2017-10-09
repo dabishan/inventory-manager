@@ -1,11 +1,17 @@
-﻿using System.Web.Mvc;
+﻿using System.Linq;
+using System.Web.Mvc;
+using InventoryManager.Models;
 
 namespace InventoryManager.Controllers
 {
     public class HomeController : Controller
     {
+
+        private InventoryContext db = new InventoryContext();
         public ActionResult Index()
         {
+
+            /*var inventory = db.Inventories.Where(i => i.OwnerId ==)*/
             return View();
         }
 

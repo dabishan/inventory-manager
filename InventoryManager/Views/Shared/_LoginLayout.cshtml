@@ -1,0 +1,59 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+    <title>@ViewData["Title"] - InventoryManager</title>
+
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <link href="~/Content/app.styles.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <script src="~/Content/app.bundle.js"></script>
+</head>
+<body>
+    
+<div class="login-box">
+    <div class="text-center">
+        <div class="navbar">
+            <div class="navbar-brand">InventoryManager</div>
+        </div>
+    </div>
+    <div class="container-fluid">
+        @if (TempData["AlertMessage"] != null)
+        {
+            <div class="alert alert-success">
+                @TempData["AlertMessage"]
+            </div>
+        }
+        @RenderBody()
+    </div>
+</div>
+
+    <environment names="Development">
+        <script src="~/Scripts/jquery-1.10.2.js"></script>
+        <script src="~/Scripts/bootstrap.js"></script>
+        <script>
+            $(document).ready(function() {
+                $("#menu-toggle").click(function(e) {
+                    $("#wrapper").toggleClass("toggled");
+                });
+            });
+
+            $(document).ready(function () {
+                $("#search").keypress(function (e) {
+                    if (e.which === 13) {
+                        $('#form-search').submit();
+                    }
+                });
+            });
+        </script>
+    </environment>
+
+
+    @RenderSection("scripts", required: false)
+</body>
+</html>

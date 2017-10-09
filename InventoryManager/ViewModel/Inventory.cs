@@ -15,6 +15,8 @@ namespace InventoryManager.ViewModel
         [Required(ErrorMessage = "Name Cannot Be Empty")]
         public string Name { get; set; }
 
+
+        [Required(ErrorMessage = "Description Cannot Be Empty")]
         public string Description { get; set; }
 
         [Display(Name = "Model Name")]

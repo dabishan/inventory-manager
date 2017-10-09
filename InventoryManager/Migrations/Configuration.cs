@@ -1,3 +1,8 @@
+using System.Linq;
+using InventoryManager.Models;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
+
 namespace InventoryManager.Migrations
 {
     using System.Data.Entity.Migrations;
@@ -23,6 +28,13 @@ namespace InventoryManager.Migrations
             //      new Person { FullName = "Rowan Miller" }
             //    );
             //
+
+            context.Roles.AddOrUpdate(new IdentityRole() { Name = ApplicationUser.ADMIN });
+            context.Roles.AddOrUpdate(new IdentityRole() { Name = ApplicationUser.MANAGER });
+            context.Roles.AddOrUpdate(new IdentityRole() { Name = ApplicationUser.CUSTOMER_MANAGER });
+            context.Roles.AddOrUpdate(new IdentityRole() { Name = ApplicationUser.AUDITOR });
+            context.Roles.AddOrUpdate(new IdentityRole() { Name = ApplicationUser.USER });
+
         }
     }
 }

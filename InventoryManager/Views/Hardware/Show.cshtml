@@ -1,4 +1,5 @@
-﻿@using JsonResult = InventoryManager.ViewModel.JsonResult
+@using InventoryManager.Models
+@using JsonResult = InventoryManager.ViewModel.JsonResult
 @model InventoryManager.ViewModel.HardwareView
 @{
     ViewBag.Title = Model.Hardware.Inventory.Name;
@@ -9,31 +10,45 @@
 
 @section PageHead{
     <h2>@Model.Hardware.Inventory.Name <span class="label label-@Model.Hardware.Inventory.Status">@Model.Hardware.Inventory.Status</span></h2>
-    <div class="info">
-        <span class="info-type"><i class="fa fa-user"></i> Owner: </span>
-        <span class="link">
-            <a href="@Url.Action("Show", "Customer", new {@Model.Hardware.Inventory.Owner.Id})">@Model.Hardware.Inventory.Owner.Name</a>
-        </span>
-    </div>
+    @if (User.IsInRole(ApplicationUser.ADMIN) || User.IsInRole(ApplicationUser.MANAGER) || User.IsInRole(ApplicationUser.CUSTOMER_MANAGER))
+    {
+        <div class="info">
+            <span class="info-type"><i class="fa fa-user"></i> Owner: </span>
+            <span class="link">
+                <a href="@Url.Action("Show", "Customer", new {@Model.Hardware.Inventory.Owner.Id})">@Model.Hardware.Inventory.Owner.Name</a>
+            </span>
+        </div>
+    }
 }
 
 @section MenuControls {
     <ul>
-        <li>
-            <a href="@Url.Action("Index", "History", new {Id = Model.Hardware.Inventory.Id})">
-                <i class="fa fa-list"></i> View History
-            </a>
-        </li>
-        <li>
-            <a href="@Url.Action("Delete", "Hardware", new {Id = Model.Hardware.Id})">
-                <i class="fa fa-trash"></i> Delete
-            </a>
-        </li>
-        <li>
-            <a href="@Url.Action("Edit", "Hardware", new {Id = Model.Hardware.Id})">
-                <i class="fa fa-pencil"></i> Edit
-            </a>
-        </li>
+        @if (User.IsInRole(ApplicationUser.ADMIN) || User.IsInRole(ApplicationUser.MANAGER) || User.IsInRole(ApplicationUser.CUSTOMER_MANAGER))
+        {
+            <li>
+                <a href="@Url.Action("Index", "History", new {Id = Model.Hardware.Inventory.Id})">
+                    <i class="fa fa-list"></i> View History
+                </a>
+            </li>
+        }
+
+        @if (User.IsInRole(ApplicationUser.ADMIN))
+        {
+            <li>
+                <a href="@Url.Action("Delete", "Hardware", new {Id = Model.Hardware.Id})">
+                    <i class="fa fa-trash"></i> Delete
+                </a>
+            </li>
+        }
+
+        @if (Model.Hardware.Inventory.Status == InventoryStatus.Pending || User.IsInRole(ApplicationUser.ADMIN) || User.IsInRole(ApplicationUser.MANAGER) || User.IsInRole(ApplicationUser.CUSTOMER_MANAGER))
+        {
+            <li>
+                <a href="@Url.Action("Edit", "Hardware", new {Id = Model.Hardware.Id})">
+                    <i class="fa fa-pencil"></i> Edit
+                </a>
+            </li>
+        }
     </ul>
 }
 

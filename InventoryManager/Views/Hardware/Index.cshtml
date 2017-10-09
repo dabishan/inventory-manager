@@ -1,4 +1,5 @@
-﻿@using PagedList.Mvc
+﻿@using InventoryManager.Models
+@using PagedList.Mvc
 @model InventoryManager.ViewModel.HardwareList
 @{
     ViewBag.Title = "Hardware";
@@ -38,12 +39,20 @@
                     <a href="@Url.Action("Show", "Hardware", new {Id = hardware.Id})"  class="mini-btn">
                         <i class="fa fa-eye"></i>
                     </a>
-                    <a href="@Url.Action("Edit", "Hardware", new {Id = hardware.Id})" class="mini-btn">
-                        <i class="fa fa-pencil"></i>
-                    </a>
-                    <a href="@Url.Action("Delete", "Hardware", new {Id = hardware.Id})" class="mini-btn">
-                        <i class="fa fa-trash"></i>
-                    </a>
+                    
+                    @if(!User.IsInRole(ApplicationUser.USER))
+                    {
+                        <a href="@Url.Action("Edit", "Hardware", new {Id = hardware.Id})" class="mini-btn">
+                            <i class="fa fa-pencil"></i>
+                        </a>
+                    }
+                    
+                    @if (User.IsInRole(ApplicationUser.ADMIN))
+                    {
+                        <a href="@Url.Action("Delete", "Hardware", new {Id = hardware.Id})" class="mini-btn">
+                            <i class="fa fa-trash"></i>
+                        </a>
+                    }
                 </td>
             </tr>
         }

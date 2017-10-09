@@ -151,34 +151,38 @@
             </div>
         </div>
     </div>
-    <div class="separator"></div>
-    <h2>Status Infomation</h2>
-    <div class="row">
-        <div class="col-sm-6">
-            <div class="row">
-                @Html.LabelFor(h => h.Status, htmlAttributes: new {@class = "col-sm-3"})
-                <div class="col-sm-9">
-                    <div class="form-group">
-                        @Html.EnumDropDownListFor(h => h.Status,
-                            htmlAttributes: new {@class = "form-control"})
-                        @Html.ValidationMessageFor(h => h.Status, "", new {@class = "text-danger"})
+    
+    @if (User.IsInRole(ApplicationUser.ADMIN) || User.IsInRole(ApplicationUser.MANAGER) || User.IsInRole(ApplicationUser.CUSTOMER_MANAGER))
+    {
+        <div class="separator"></div>
+        <h2>Status Infomation</h2>
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="row">
+                    @Html.LabelFor(h => h.Status, htmlAttributes: new {@class = "col-sm-3"})
+                    <div class="col-sm-9">
+                        <div class="form-group">
+                            @Html.EnumDropDownListFor(h => h.Status,
+                                htmlAttributes: new {@class = "form-control"})
+                            @Html.ValidationMessageFor(h => h.Status, "", new {@class = "text-danger"})
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="col-sm-6">
-            <div class="row">
-                @Html.LabelFor(h => h.OwnerId, htmlAttributes: new {@class = "col-sm-3"})
-                <div class="col-sm-9">
-                    <div class="form-group">
-                        @Html.DropDownListFor(h => h.OwnerId,
-                            new SelectList(Model.Owners, "Id", "Name", Model.OwnerId),
-                            htmlAttributes: new {@class = "form-control"})
+            <div class="col-sm-6">
+                <div class="row">
+                    @Html.LabelFor(h => h.OwnerId, htmlAttributes: new {@class = "col-sm-3"})
+                    <div class="col-sm-9">
+                        <div class="form-group">
+                            @Html.DropDownListFor(h => h.OwnerId,
+                                new SelectList(Model.Owners, "Id", "Name", Model.OwnerId),
+                                htmlAttributes: new {@class = "form-control"})
 
-                        @Html.ValidationMessageFor(h => h.OwnerId, "", new {@class = "text-danger"})
+                            @Html.ValidationMessageFor(h => h.OwnerId, "", new {@class = "text-danger"})
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+    }
 </div>

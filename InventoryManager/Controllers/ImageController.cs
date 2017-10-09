@@ -141,7 +141,15 @@ namespace InventoryManager.Controllers
             var file = Server.MapPath(ConfigurationManager.AppSettings["DocumentLocation"] + document.Path);
             Response.AddHeader("Content-Disposition", $"attachment; filename=\"{document.Path}\"");
             Response.ContentType = document.FileType;
-            Response.WriteFile(file);
+            try
+            {
+                Response.WriteFile(file);
+            }
+            catch (Exception e)
+            {
+                return new HttpNotFoundResult();
+            }
+            
             return null;
         }
 

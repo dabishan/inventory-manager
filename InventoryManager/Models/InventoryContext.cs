@@ -1,9 +1,10 @@
 ﻿using System.Data.Entity;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 
 namespace InventoryManager.Models
 {
-    public class InventoryContext : DbContext
+    public class InventoryContext : IdentityDbContext<ApplicationUser>
     {
         public DbSet<Inventory> Inventories { get; set; }
         public DbSet<Document> Documents { get; set; }
@@ -15,7 +16,7 @@ namespace InventoryManager.Models
         public DbSet<SoftwareType> SoftwareTypes { get; set; }
         public DbSet<Owner> Owners { get; set; }
         public DbSet<Customer> Customers { get; set; }
-        public DbSet<GbhContact> GbhgContacts { get; set; }
+        public DbSet<Employee> Employees { get; set; }
         public DbSet<Location> Locations { get; set; }
         public DbSet<Contact> Contacts { get; set; }
         public DbSet<History> Histories { get; set; }
@@ -23,6 +24,11 @@ namespace InventoryManager.Models
         public InventoryContext() : base("name=InventoryManagerContext")
         {
             this.Configuration.LazyLoadingEnabled = false;
+        }
+
+        public static InventoryContext Create()
+        {
+            return new InventoryContext();
         }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

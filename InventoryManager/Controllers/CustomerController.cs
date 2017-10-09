@@ -9,6 +9,7 @@ using PagedList;
 
 namespace InventoryManager.Controllers
 {
+    [Authorize(Roles = "InventoryCustomerManager, InventoryAdmin")]
     public class CustomerController : Controller
     {
         private InventoryContext db = new InventoryContext();
